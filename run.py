@@ -22,14 +22,14 @@ def user_choice():
     valid input.
     """
     print(
-        "Please select from the following options:")
+        "Please select from the following options: \n")
     print(
-        "1. Retrieve all contacts 2. Retreive specific contact\
-        3.Add new contact 4.Edit existing contact")
+        "1. Retrieve all contacts 2. Retreive specific contact \
+3.Add new contact 4.Edit existing contact\n")
 
     while True:
         try:
-            user_input = int(input('Type your input here:'))
+            user_input = int(input('Type your input here: '))
             if user_input <= 0 or user_input > 4:
                 print("Please only select a number between 1 & 4.")
                 # break
@@ -90,7 +90,7 @@ def run_programme():
     This function will call on all of the other functions
     to run the programme
     """
-    print('Welcome to your contacts book application!\n')
+    print('\nWelcome to your contacts book application!\n')
     user_choice()
 
 
