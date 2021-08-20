@@ -27,10 +27,18 @@ def user_choice():
         "1. Retrieve all contacts 2. Retreive specific contact\
         3.Add new contact 4.Edit existing contact")
 
-    user_input = input('Type your input here...')
+    while True:
+        try:
+            user_input = int(input('Type your input here:'))
+            if user_input <= 0 or user_input > 4:
+                print("Please only select a number between 1 & 4.")
+                # break
+        except ValueError as e:
+            print(f"You have input an invalid option {e},\
+                please select a number between 1 & 4.")
+            return False
+        return True
 
-    # while True:
-    #     try:
     if user_input == 1:
         retrieve_all_contacts()
     elif user_input == 2:
@@ -39,12 +47,6 @@ def user_choice():
         add_new_contact()
     elif user_input == 4:
         edit_existing_contact()
-        # except ValueError as e:
-        #     print(f"You have input an invalid option {e},\
-        #         please select a number between 1 & 4.")
-        #     return False
-
-        # return True
 
 
 # Retrieve all contacts
