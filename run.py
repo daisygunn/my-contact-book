@@ -24,7 +24,7 @@ def user_choice():
     print(
         "Please select from the following options: \n")
     print(
-        "1. Retrieve all contacts 2. Retreive specific contact \
+        "1.Retrieve all contacts 2.Retreive specific contact \
 3.Add new contact 4.Edit existing contact\n")
 
     while True:
@@ -32,21 +32,20 @@ def user_choice():
             user_input = int(input('Type your input here: '))
             if user_input <= 0 or user_input > 4:
                 print("Please only select a number between 1 & 4.")
-                # break
+                break
         except ValueError as e:
             print(f"You have input an invalid option {e},\
                 please select a number between 1 & 4.")
             return False
+        if user_input == 1:
+            retrieve_all_contacts()
+        elif user_input == 2:
+            retrieve_one_contact
+        elif user_input == 3:
+            add_new_contact()
+        elif user_input == 4:
+            edit_existing_contact()
         return True
-
-    if user_input == 1:
-        retrieve_all_contacts()
-    elif user_input == 2:
-        retrieve_one_contact
-    elif user_input == 3:
-        add_new_contact()
-    elif user_input == 4:
-        edit_existing_contact()
 
 
 # Retrieve all contacts
@@ -54,7 +53,8 @@ def retrieve_all_contacts():
     """
     Function to retrieve full list of contacts
     """
-    print('Retrieve all')
+    contacts_all = SHEET.worksheet('contact_list').get_all_values()
+    print(contacts_all)
 
 
 # Retrieve one contact
