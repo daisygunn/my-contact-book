@@ -17,7 +17,9 @@ User Stories:
 
 ### Structure
 ![Flowchart of Python logic](assets/images/flowchart.png)
+
 As you can see from the flowchart above the logic has been based around the four key user options, retrieving contacts, adding contacts & editing existing contacts. Each path will take the user back to the beginning once finished. 
+
 --
 ## Features
 
@@ -26,6 +28,7 @@ As you can see from the flowchart above the logic has been based around the four
 - [Python]()
 - [Google Auth]()
 - [Google Sheets]()
+- [Pyip]()
 
 
 ## Testing

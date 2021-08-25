@@ -29,21 +29,21 @@ def main_menu_selection():
     valid input.
     """
     print(
-        "Please select from the following options: \n")
+        "\nPlease select from the following options: \n")
     print(
         "1.Retrieve all contacts \
 2.Retreive specific contact \
 3.Add new contact \
 4.Edit existing contact\n")
     while True:
-        user_response(1, 4)
-        if user_response == 1:
+        user_input = user_response(1, 4)
+        if user_input == 1:
             retrieve_all_contacts()
             break
-        elif user_response == 2:
+        elif user_input == 2:
             retrieve_one_contact()
             break
-        elif user_response == 3:
+        elif user_input == 3:
             add_new_contact()
             break
         else:
@@ -57,8 +57,9 @@ def retrieve_all_contacts():
     """
     Function to retrieve full list of contacts
     """
-    contacts_all = SHEET.worksheet('contact_list').get_all_values()
-    print(contacts_all)
+    all_contacts = SHEET.worksheet('contact_list').get_all_records()
+    print("\nNow retrieving all of your contacts...\n")
+    print(all_contacts)
 
 
 # Retrieve one contact
@@ -75,7 +76,7 @@ def add_new_contact():
     Allows user to add new contact information
     """
     print('Add')
-   
+
 
 # Edit existing contact
 def edit_existing_contact():
@@ -83,7 +84,7 @@ def edit_existing_contact():
     Allows user to edit exiting contact
     """
     print('Edit')
-    
+
 
 # Update worksheet
 
