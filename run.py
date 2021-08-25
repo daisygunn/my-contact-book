@@ -74,8 +74,17 @@ def retrieve_all_contacts():
     """
     all_contacts = SHEET.worksheet('contact_list').get_all_records()
     print("\nNow retrieving all of your contacts...\n")
-    print(all_contacts)
+    # print(all_contacts)
+    for contact in all_contacts:
+        print_record(contact)
     another_task()
+
+
+def print_record(record):
+    print("Printing record...")
+    for key, value in record.items():
+        print(f"{key}: {value}")
+    print("\n")
 
 
 # Retrieve one contact
