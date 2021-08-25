@@ -31,10 +31,8 @@ def main_menu_selection():
     print(
         "\nPlease select from the following options: \n")
     print(
-        "1.Retrieve all contacts \
-2.Retreive specific contact \
-3.Add new contact \
-4.Edit existing contact\n")
+        "1.Retrieve all contacts\n2.Retreive specific contact\n\
+3.Add new contact\n4.Edit existing contact\n")
     while True:
         user_input = user_response(1, 4)
         if user_input == 1:
@@ -52,6 +50,23 @@ def main_menu_selection():
         return False
 
 
+# Function for user to choose if they want to complete another task
+# or shut the programme down
+def another_task():
+    print("Would you like to complete another task?")
+    print("1. Yes, back to main menu\n\
+2. No, end programme")
+    while True:
+        user_input = user_response(1, 2)
+        if user_input == 1:
+            print("\nNow taking you back to the main menu...\n")
+            main_menu_selection()
+            break
+        else:
+            print("Programme shutting down...\n")
+            break
+
+
 # Retrieve all contacts
 def retrieve_all_contacts():
     """
@@ -60,6 +75,7 @@ def retrieve_all_contacts():
     all_contacts = SHEET.worksheet('contact_list').get_all_records()
     print("\nNow retrieving all of your contacts...\n")
     print(all_contacts)
+    another_task()
 
 
 # Retrieve one contact
