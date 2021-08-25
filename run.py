@@ -72,12 +72,25 @@ def retrieve_all_contacts():
     """
     Function to retrieve full list of contacts
     """
-    all_contacts = SHEET.worksheet('contact_list').get_all_records()
+    all_contacts = retrieve_records()
     print("\nNow retrieving all of your contacts...\n")
     # print(all_contacts)
     for contact in all_contacts:
         print_record(contact)
     another_task()
+
+
+def print_records(records):
+    """
+    Function to retrieve full list of contacts
+    """
+    print("\nNow printing all of your contacts...\n")
+    for contact in records:
+        print_record(contact)
+
+
+def retrieve_records():
+    return SHEET.worksheet('contact_list').get_all_records()
 
 
 def print_record(record):
@@ -101,6 +114,11 @@ def retrieve_one_contact():
         user_input = user_response(1, 3)
         if user_input == 1:
             print('search_by_first_name')
+            name = input('Enter name:')
+            result = filter(
+                lambda record: record['first_name'] == name, retrieve_records()
+                )
+            print_records(result)
             break
         elif user_input == 2:
             print('search_by_last_name')
