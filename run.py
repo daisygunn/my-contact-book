@@ -83,6 +83,11 @@ def retrieve_one_contact():
     """
     Allows user to search for specific contact
     """
+    print("\nPlease select how you would like to search...\n\
+\n1. Search by first name\n\
+2. Search by last name\n\
+3. Search by phone number\n")
+
     while True:
         user_input = user_response(1, 3)
         if user_input == 1:
