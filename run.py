@@ -14,8 +14,14 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Contacts sheet')
 
 
-# User choice
-def user_choice():
+# Function to validate user response based upon number selection
+def user_response(min_value, max_value):
+    input = pyip.inputInt(min=min_value, max=max_value)
+    return input
+
+
+# Main menu selection
+def main_menu_selection():
     """
     User selects which task they would like to do
     Take their input and runs elif loop to trigger next process.
@@ -25,18 +31,25 @@ def user_choice():
     print(
         "Please select from the following options: \n")
     print(
-        "1.Retrieve all contacts 2.Retreive specific contact \
-3.Add new contact 4.Edit existing contact\n")
+        "1.Retrieve all contacts \
+2.Retreive specific contact \
+3.Add new contact \
+4.Edit existing contact\n")
     while True:
-        user_response = pyip.inputInt(min=1, max=4)
+        user_response(1, 4)
         if user_response == 1:
             retrieve_all_contacts()
+            break
         elif user_response == 2:
-            retrieve_one_contact
+            retrieve_one_contact()
+            break
         elif user_response == 3:
             add_new_contact()
+            break
         else:
             edit_existing_contact()
+            break
+        return False
 
 
 # Retrieve all contacts
@@ -62,7 +75,7 @@ def add_new_contact():
     Allows user to add new contact information
     """
     print('Add')
-
+   
 
 # Edit existing contact
 def edit_existing_contact():
@@ -70,6 +83,7 @@ def edit_existing_contact():
     Allows user to edit exiting contact
     """
     print('Edit')
+    
 
 # Update worksheet
 
@@ -82,7 +96,7 @@ def run_programme():
     to run the programme
     """
     print('\nWelcome to your contacts book application!\n')
-    user_choice()
+    main_menu_selection()
 
 
 run_programme()
