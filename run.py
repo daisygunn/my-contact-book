@@ -67,6 +67,14 @@ def another_task():
             break
 
 
+def retrieve_records():
+    """
+    Function to retrieve all records found
+    in the contacts list spreadhseet.
+    """
+    return SHEET.worksheet('contact_list').get_all_records()
+
+
 # Retrieve all contacts
 def retrieve_all_contacts():
     """
@@ -92,14 +100,6 @@ def print_records(records):
         print_records_in_loop(record)
 
 
-def retrieve_records():
-    """
-    Function to retrieve all records found
-    in the contacts list spreadhseet.
-    """
-    return SHEET.worksheet('contact_list').get_all_records()
-
-
 def print_records_in_loop(record):
     """
     Function to loop through all records passed
@@ -117,9 +117,10 @@ def retrieve_one_contact():
     """
     Allows user to search for specific contact,
     either by first name, last name or phone number.
-    Function will then print all matches.
+    Function will then print all matches if they are found.
     """
-    print("\nPlease select how you would like to search...\n\
+    print("\nPlease select how you would like to search\n\
+by selecting a number from the menu below:\n\
 \n1. Search by first name\n\
 2. Search by last name\n\
 3. Search by phone number\n")
@@ -148,13 +149,13 @@ def retrieve_one_contact():
             print_records(result)
             break
         else:
-            phone_number = str(pyip.inputInt('Enter phone number: '))
+            phone_number = str(pyip.inputInt('*remember phone numbers are formatted \
+            like this: 079 8972 9384* \nEnter phone number here:\n'))
             result = filter(
                 lambda record: record['phone_number'] == phone_number or
                 phone_number in record['phone_number'], retrieve_records()
                 )
             print_records(result)
-            print('search_by_phone_number')
             break
         return False
 
