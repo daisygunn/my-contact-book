@@ -86,8 +86,10 @@ def print_records(records):
     To be used in the contact search functions.
     """
     print("\nNow printing your contact(s)...\n")
-    for contact in records:
-        print_records_in_loop(contact)
+    # records_list = list(records)
+    # print(records_list)
+    for record in records:
+        print_records_in_loop(record)
 
 
 def retrieve_records():
@@ -125,13 +127,17 @@ def retrieve_one_contact():
     while True:
         user_input = user_response(1, 3)
         if user_input == 1:
-            print('search_by_first_name')
             name = pyip.inputStr('Enter first name:')
             result = filter(
                 lambda record: record['first_name'] == name or
                 name in record['first_name'], retrieve_records()
                 )
-            break
+            # if len(list(result)) == []:
+            #     print("No contact with that name found")
+            # else:
+            #     print("contact found")
+            #     print(result)
+            print_records(result)
         elif user_input == 2:
             print('search_by_last_name')
             break
