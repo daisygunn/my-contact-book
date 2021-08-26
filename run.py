@@ -76,24 +76,34 @@ def retrieve_all_contacts():
     print("\nNow retrieving all of your contacts...\n")
     # print(all_contacts)
     for contact in all_contacts:
-        print_record(contact)
+        print_records_in_loop(contact)
     another_task()
 
 
 def print_records(records):
     """
-    Function to retrieve full list of contacts
+    Function to print a single contact.
+    To be used in the contact search functions.
     """
-    print("\nNow printing all of your contacts...\n")
+    print("\nNow printing your contact(s)...\n")
     for contact in records:
-        print_record(contact)
+        print_records_in_loop(contact)
 
 
 def retrieve_records():
+    """
+    Function to retrieve all records found
+    in the contacts list spreadhseet.
+    """
     return SHEET.worksheet('contact_list').get_all_records()
 
 
-def print_record(record):
+def print_records_in_loop(record):
+    """
+    Function to loop through all records passed
+    as a parameter and print the details in a
+    list of key: values.
+    """
     print("Printing record...")
     for key, value in record.items():
         print(f"{key}: {value}")
@@ -103,7 +113,9 @@ def print_record(record):
 # Retrieve one contact
 def retrieve_one_contact():
     """
-    Allows user to search for specific contact
+    Allows user to search for specific contact,
+    either by first name, last name or phone number.
+    Function will then print all matches.
     """
     print("\nPlease select how you would like to search...\n\
 \n1. Search by first name\n\
@@ -114,11 +126,11 @@ def retrieve_one_contact():
         user_input = user_response(1, 3)
         if user_input == 1:
             print('search_by_first_name')
-            name = input('Enter name:')
+            name = pyip.inputStr('Enter first name:')
             result = filter(
-                lambda record: record['first_name'] == name, retrieve_records()
+                lambda record: record['first_name'] == name or
+                name in record['first_name'], retrieve_records()
                 )
-            print_records(result)
             break
         elif user_input == 2:
             print('search_by_last_name')
