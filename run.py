@@ -127,21 +127,33 @@ def retrieve_one_contact():
     while True:
         user_input = user_response(1, 3)
         if user_input == 1:
-            name = pyip.inputStr('Enter first name:')
+            first_name = pyip.inputStr('Enter first name: ').capitalize()
             result = filter(
-                lambda record: record['first_name'] == name or
-                name in record['first_name'], retrieve_records()
+                lambda record: record['first_name'] == first_name or
+                first_name in record['first_name'], retrieve_records()
                 )
-            # if len(list(result)) == []:
-            #     print("No contact with that name found")
-            # else:
+            print_records(result)
+            # result_list = list(result)
+            # if len(result_list) != 0:
             #     print("contact found")
             #     print(result)
-            print_records(result)
+            # else:
+            #     print("No contact with that name found")
         elif user_input == 2:
-            print('search_by_last_name')
+            last_name = pyip.inputStr('Enter last name: ').capitalize()
+            result = filter(
+                lambda record: record['last_name'] == last_name or
+                last_name in record['last_name'], retrieve_records()
+                )
+            print_records(result)
             break
         else:
+            phone_number = pyip.inputInt('Enter phone number: ')
+            result = filter(
+                lambda record: record['phone_number'] == phone_number or
+                phone_number in record['phone_number'], retrieve_records()
+                )
+            print_records(result)
             print('search_by_phone_number')
             break
         return False
