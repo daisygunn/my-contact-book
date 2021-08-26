@@ -148,7 +148,7 @@ def retrieve_one_contact():
             print_records(result)
             break
         else:
-            phone_number = pyip.inputInt('Enter phone number: ')
+            phone_number = str(pyip.inputInt('Enter phone number: '))
             result = filter(
                 lambda record: record['phone_number'] == phone_number or
                 phone_number in record['phone_number'], retrieve_records()
