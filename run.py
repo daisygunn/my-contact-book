@@ -160,20 +160,19 @@ by selecting a number from the menu below:\n\
                 first_name in record['first_name'], retrieve_records()
                 ))
             if len(result) != 0:
-                print("contact found")
+                print("Contact found")
                 print_records(result)
+                user_input = pyip.inputYesNo('Would you like to edit this contact? \
+# Type yes or no -')
+                if user_input == 'yes':
+                    if len(result) > 6:
+                        print('list is longer than one')
+                    else:
+                        edit_existing_contact(result)
+                else:
+                    another_task()
             else:
                 print("No contact with that name found")
-# user_input = pyip.inputYesNo('Would you like to edit this contact? \
-# Type yes or no -')
-#             if user_input == 'yes':
-#                 if len(print_records(result)) > 1:
-#                     print('list is longer than one')
-#                 else:
-#                     contact_info = print_records(result)
-#                     print(contact_info)
-# edit_existing_contact(contact_info)
-            # result_list = list(result)
         elif user_input == 2:
             last_name = pyip.inputStr('Enter last name: ').capitalize()
             result = filter(
@@ -222,9 +221,10 @@ def edit_existing_contact(contact):
     """
     Allows user to edit exiting contact
     """
+    print(contact)
     print('\nWhich value would you like to change?\n \
-1. First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
-5. Address\n 6.Group\n')
+1.First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
+5.Address\n 6.Group\n')
     user_input = user_response(1, 6)
     if user_input == 1:
         new_value = pyip.inputStr('Enter new first name below:')
@@ -264,5 +264,5 @@ def run_programme():
     main_menu_selection()
 
 
-# run_programme()
-retrieve_one_contact()
+run_programme()
+# retrieve_one_contact()
