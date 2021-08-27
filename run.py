@@ -205,11 +205,12 @@ def add_new_contact():
     """
     Allows user to add new contact information
     """
-    print('To add a new contact please enter the details below:')
-    first_name = pyip.inputStr('First Name: ')
-    last_name = pyip.inputStr('Last Name: ')
-    phone_number = pyip.inputStr('Phone Number: ')
-    email_address = pyip.inputStr('Email Address: ')
+    print('To add a new contact please enter the details below, \
+type NA for any fields you wish to leave blank.')
+    first_name = pyip.inputStr('First Name: ').capitalize()
+    last_name = pyip.inputStr('Last Name: ').capitalize()
+    phone_number = pyip.inputStr('Phone Number: ', blockRegexes=['A-Za-z'])
+    email_address = pyip.inputEmail('Email Address: ')
     address = pyip.inputStr('Address: ')
     group = pyip.inputChoice(
         ['Family', 'Favourites', 'General', 'Friends']
@@ -221,10 +222,27 @@ def add_new_contact():
     save_to_worksheet(new_contact_info)
 
 
+def edit(contact, cell_index, info_type):
+    """
+    Retrieves cell index based upon search
+    and allows user to update cell by
+    adding a new entry.
+    """
+    cell = SHEET.worksheet('contact_list').find(contact[cell_index])
+    print(cell.row, cell.col)
+    new_value = pyip.inputStr(f'Enter new {info_type}: ').capitalize()
+    contact[cell_index] = new_value
+    print(f'{info_type} now being updated...')
+    update_worksheet(cell.row, cell.col, new_value)
+    print(contact)
+
+
 # Edit existing contact
 def edit_existing_contact(contact):
     """
-    Allows user to edit exiting contact
+    Allows user to edit existing contact,
+    choosing which input field they would like
+    to edit.
     """
     print(contact)
     print('\nWhich value would you like to change?\n \
@@ -232,37 +250,33 @@ def edit_existing_contact(contact):
 5.Address\n 6.Group\n')
     user_input = user_response(1, 6)
     if user_input == 1:
-        cell = SHEET.worksheet('contact_list').find(contact[0])
-        print(cell.row, cell.col)
-        new_value = pyip.inputStr('Enter new first name: ').capitalize()
-        contact[0] = new_value
-        print('First name now being updated...')
-        update_worksheet(cell.row, cell.col, new_value)
-        print(contact)
+        edit(contact, 0, 'first name')
         another_task()
     elif user_input == 2:
-        new_value = pyip.inputStr('Enter new last name below:')
-        contact[1] = new_value
+        edit(contact, 1, 'last name')
         print(contact)
+        another_task()
     elif user_input == 3:
-        new_value = pyip.inputStr('Enter new phone number below:')
-        contact[2] = new_value
+        edit(contact, 2, 'phone number')
         print(contact)
+        another_task()
     elif user_input == 4:
-        new_value = pyip.inputStr('Enter new email below:')
-        contact[3] = new_value
+        edit(contact, 3, 'email address')
         print(contact)
+        another_task()
     elif user_input == 5:
-        new_value = pyip.inputStr('Enter new address below:')
-        contact[4] = new_value
+        edit(contact, 4, 'address')
         print(contact)
+        another_task()
     elif user_input == 6:
+        cell = SHEET.worksheet('contact_list').find(contact[5])
         new_value = pyip.inputChoice(
             ['Family', 'Favourites', 'General', 'Friends']
             )
         contact[5] = new_value
+        print('Group now being updated...')
+        update_worksheet(cell.row, cell.col, new_value)
         print(contact)
-    # update_worksheet(contact)
 
 
 def run_programme():
@@ -274,5 +288,5 @@ def run_programme():
     main_menu_selection()
 
 
-# run_programme()
-retrieve_one_contact()
+# retrieve_one_contact()
+run_programme()
