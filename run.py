@@ -1,7 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
-from colored import fg, bg, attr
+from colored import fore, back, style
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -34,10 +34,11 @@ def main_menu_selection():
     valid input.
     """
     print(
+        fore.DARK_ORANGE_3A + style.BOLD +
         "\nPlease select from the following options: \n")
     print(
         "1.Retrieve all contacts\n2.Retreive specific contact\n\
-3.Add new contact\n4.Edit existing contact\n")
+3.Add new contact\n4.Edit existing contact\n" + style.RESET)
     while True:
         user_input = user_response(1, 4)
         if user_input == 1:
@@ -69,7 +70,9 @@ def another_task():
             main_menu_selection()
             break
         else:
-            print("Programme shutting down...\n")
+            print(
+                fore.WHITE + back.DARK_GRAY + style.BOLD +
+                "Programme shutting down...\n")
             break
 
 
@@ -139,7 +142,7 @@ def save_to_worksheet(info):
         print(f'Now saving {info}....')
         worksheet_to_update = SHEET.worksheet('contact_list')
         worksheet_to_update.append_row(info)
-        print('Save complete')
+        print(fore.WHITE + back.GREEN_4 + style.BLINK + 'Save complete' + style.RESET)
         another_task()
     else:
         print('\nYou will now be taken to edit this contact...\n')
@@ -158,7 +161,7 @@ def search(info_type):
         search_by in record[info_type], retrieve_records()
         ))
     if len(result) != 0:
-        print("Contact found")
+        print(fore.WHITE + back.GREEN_4 + style.BOLD + "Contact found" + style.RESET)
         print_records(result)
         global contact_info
         user_input = pyip.inputYesNo('Would you like to edit this contact? \
@@ -172,7 +175,9 @@ def search(info_type):
         else:
             another_task()
     else:
-        print("No contact with that name found")
+        print(
+            fore.WHITE + back.RED + style.BLINK +
+            "No contact with that name found" + style.RESET)
 
 
 # Retrieve one contact
@@ -291,7 +296,9 @@ def run_programme():
     This function will call on all of the other functions
     to run the programme
     """
-    print('\nWelcome to your contacts book application!\n')
+    print(
+        fore.WHITE + back.DARK_ORANGE_3A + style.BOLD +
+        '\nWelcome to your contacts book application!\n' + style.RESET)
     main_menu_selection()
 
 
