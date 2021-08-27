@@ -99,6 +99,7 @@ def print_records(records):
     # print(records_list)
     for record in records:
         print_records_in_loop(record)
+        return record
 
 
 def print_records_in_loop(record):
@@ -108,9 +109,12 @@ def print_records_in_loop(record):
     list of key: values.
     """
     print("Printing record...")
+    contact_info = []
     for key, value in record.items():
         print(f"{key}: {value}")
+        contact_info.append({value})
     print("\n")
+    return contact_info
 
 
 # Update worksheet
@@ -151,17 +155,25 @@ by selecting a number from the menu below:\n\
         user_input = user_response(1, 3)
         if user_input == 1:
             first_name = pyip.inputStr('Enter first name: ').capitalize()
-            result = filter(
+            result = list(filter(
                 lambda record: record['first_name'] == first_name or
                 first_name in record['first_name'], retrieve_records()
-                )
-            print_records(result)
+                ))
+            if len(result) != 0:
+                print("contact found")
+                print_records(result)
+            else:
+                print("No contact with that name found")
+# user_input = pyip.inputYesNo('Would you like to edit this contact? \
+# Type yes or no -')
+#             if user_input == 'yes':
+#                 if len(print_records(result)) > 1:
+#                     print('list is longer than one')
+#                 else:
+#                     contact_info = print_records(result)
+#                     print(contact_info)
+# edit_existing_contact(contact_info)
             # result_list = list(result)
-            # if len(result_list) != 0:
-            #     print("contact found")
-            #     print(result)
-            # else:
-            #     print("No contact with that name found")
         elif user_input == 2:
             last_name = pyip.inputStr('Enter last name: ').capitalize()
             result = filter(
@@ -252,4 +264,5 @@ def run_programme():
     main_menu_selection()
 
 
-run_programme()
+# run_programme()
+retrieve_one_contact()
