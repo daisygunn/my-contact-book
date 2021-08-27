@@ -109,18 +109,21 @@ def print_records_in_loop(record):
     list of key: values.
     """
     print("Printing record...")
+    global contact_info
     contact_info = []
     for key, value in record.items():
         print(f"{key}: {value}")
-        contact_info.append({value})
+        contact_info.append(value)
     print("\n")
     return contact_info
 
 
 # Update worksheet
-def update_worksheet(info):
+def update_worksheet(row, col, value):
     worksheet_to_update = SHEET.worksheet('contact_list')
-    worksheet_to_update.append_row(info)
+    worksheet_to_update.update_cell(
+            row, col, value
+            )
 
 
 # Save
@@ -162,13 +165,15 @@ by selecting a number from the menu below:\n\
             if len(result) != 0:
                 print("Contact found")
                 print_records(result)
+                global contact_info
                 user_input = pyip.inputYesNo('Would you like to edit this contact? \
 # Type yes or no -')
                 if user_input == 'yes':
                     if len(result) > 6:
                         print('list is longer than one')
+                        print(contact_info)
                     else:
-                        edit_existing_contact(result)
+                        edit_existing_contact(contact_info)
                 else:
                     another_task()
             else:
@@ -227,9 +232,14 @@ def edit_existing_contact(contact):
 5.Address\n 6.Group\n')
     user_input = user_response(1, 6)
     if user_input == 1:
-        new_value = pyip.inputStr('Enter new first name below:')
+        cell = SHEET.worksheet('contact_list').find(contact[0])
+        print(cell.row, cell.col)
+        new_value = pyip.inputStr('Enter new first name: ').capitalize()
         contact[0] = new_value
+        print('First name now being updated...')
+        update_worksheet(cell.row, cell.col, new_value)
         print(contact)
+        another_task()
     elif user_input == 2:
         new_value = pyip.inputStr('Enter new last name below:')
         contact[1] = new_value
@@ -252,7 +262,7 @@ def edit_existing_contact(contact):
             )
         contact[5] = new_value
         print(contact)
-    save_to_worksheet(contact)
+    # update_worksheet(contact)
 
 
 def run_programme():
@@ -264,5 +274,5 @@ def run_programme():
     main_menu_selection()
 
 
-run_programme()
-# retrieve_one_contact()
+# run_programme()
+retrieve_one_contact()
