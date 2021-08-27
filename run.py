@@ -41,12 +41,13 @@ def main_menu_selection():
         elif user_input == 2:
             retrieve_one_contact()
             break
-        elif user_input == 3:
+        else:
+            # user_input == 3:
             add_new_contact()
             break
-        else:
-            edit_existing_contact()
-            break
+        # else:
+        #     # edit_existing_contact()
+        #     break
         return False
 
 
@@ -112,6 +113,20 @@ def print_records_in_loop(record):
     print("\n")
 
 
+# Update worksheet
+def update_worksheet(info):
+    worksheet_to_update = SHEET.worksheet('contact_list')
+    worksheet_to_update.append_row(info)
+
+
+# Save
+def save_to_worksheet(info):
+    print(f'Now saving {info}....')
+    worksheet_to_update = SHEET.worksheet('contact_list')
+    worksheet_to_update.append_row(info)
+    print('Save complete')
+
+
 # Retrieve one contact
 def retrieve_one_contact():
     """
@@ -165,20 +180,39 @@ def add_new_contact():
     """
     Allows user to add new contact information
     """
-    print('Add')
+    print('To add a new contact please enter the details below:')
+    first_name = pyip.inputStr('First Name: ')
+    last_name = pyip.inputStr('Last Name: ')
+    phone_number = pyip.inputStr('Phone Number: ')
+    email_address = pyip.inputStr('Email Address: ')
+    address = pyip.inputStr('Address: ')
+    group = pyip.inputChoice(
+        ['Family', 'Favourites', 'General', 'Friends']
+        )
+    new_contact_info = [
+        first_name, last_name, phone_number, email_address, address, group
+        ]
+    print(new_contact_info)
+    print('Would you like to save this contact?')
+    user_input = pyip.inputYesNo()
+    if user_input == 'yes':
+        print('\nSaving contact...\n')
+        save_to_worksheet(new_contact_info)
+        another_task()
+    else:
+        print('\nYou will now be taken to edit this contact...\n')
+        edit_existing_contact(new_contact_info)
 
 
 # Edit existing contact
-def edit_existing_contact():
+def edit_existing_contact(contact):
     """
     Allows user to edit exiting contact
     """
+    print('\nWhich value would you like to change?\n \
+    1. First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
+    5. Address 6.Loop?')
     print('Edit')
-
-
-# Update worksheet
-
-# Save
 
 
 def run_programme():
@@ -190,4 +224,5 @@ def run_programme():
     main_menu_selection()
 
 
-run_programme()
+# run_programme()
+add_new_contact()
