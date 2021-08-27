@@ -16,6 +16,10 @@ SHEET = GSPREAD_CLIENT.open('Contacts sheet')
 
 # Function to validate user response based upon number selection
 def user_response(min_value, max_value):
+    """
+    Function used throughout programme
+    to validate users input from a list of choices.
+    """
     input = pyip.inputInt(min=min_value, max=max_value)
     return input
 
@@ -141,6 +145,35 @@ def save_to_worksheet(info):
         edit_existing_contact(info)
 
 
+# Search
+def search(info_type):
+    """
+    Function that returns result based upon
+    user input and info type selected.
+    """
+    search_by = pyip.inputStr(f'Enter {info_type}: ').capitalize()
+    result = list(filter(
+        lambda record: record[info_type] == search_by or
+        search_by in record[info_type], retrieve_records()
+        ))
+    if len(result) != 0:
+        print("Contact found")
+        print_records(result)
+        global contact_info
+        user_input = pyip.inputYesNo('Would you like to edit this contact? \
+# Type yes or no -')
+        if user_input == 'yes':
+            if len(result) > 6:
+                print('list is longer than one')
+                print(contact_info)
+            else:
+                edit_existing_contact(contact_info)
+        else:
+            another_task()
+    else:
+        print("No contact with that name found")
+
+
 # Retrieve one contact
 def retrieve_one_contact():
     """
@@ -153,39 +186,12 @@ by selecting a number from the menu below:\n\
 \n1. Search by first name\n\
 2. Search by last name\n\
 3. Search by phone number\n")
-
     while True:
         user_input = user_response(1, 3)
         if user_input == 1:
-            first_name = pyip.inputStr('Enter first name: ').capitalize()
-            result = list(filter(
-                lambda record: record['first_name'] == first_name or
-                first_name in record['first_name'], retrieve_records()
-                ))
-            if len(result) != 0:
-                print("Contact found")
-                print_records(result)
-                global contact_info
-                user_input = pyip.inputYesNo('Would you like to edit this contact? \
-# Type yes or no -')
-                if user_input == 'yes':
-                    if len(result) > 6:
-                        print('list is longer than one')
-                        print(contact_info)
-                    else:
-                        edit_existing_contact(contact_info)
-                else:
-                    another_task()
-            else:
-                print("No contact with that name found")
+            search('first_name')
         elif user_input == 2:
-            last_name = pyip.inputStr('Enter last name: ').capitalize()
-            result = filter(
-                lambda record: record['last_name'] == last_name or
-                last_name in record['last_name'], retrieve_records()
-                )
-            print_records(result)
-            break
+            search('last_name')
         else:
             phone_number = str(pyip.inputInt('*remember phone numbers are formatted \
             like this: 079 8972 9384* \nEnter phone number here:\n'))
