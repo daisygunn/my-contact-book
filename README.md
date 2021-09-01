@@ -24,12 +24,32 @@ As you can see from the flowchart above the logic has been based around the four
 ## Features
 
 ## Technologies Useds
-- [Gspread]()
-- [Python]()
-- [Google Auth]()
-- [Google Sheets]()
-- [Pyip]()
 
+I have used several technologies that have enabled this design to work:
+
+- [Python](https://www.python.org/)
+    - Python is the core programming language used to write all of the code in this application to make it fully functional.
+    - In addition to core Python I have used the following Python modules:
+        - [Gspread](https://docs.gspread.org/en/latest/)
+            - Used to access my google sheets document throughout the application, to access and edit data.
+        - [Google Auth](https://google-auth.readthedocs.io/en/master/)
+            - Used to provide access to the application to interact with my google sheet.
+        - [Pyip](https://pyinputplus.readthedocs.io/en/latest/)
+            - Used to validate all of the user inputs.
+        - [Colored](https://pypi.org/project/colored/)
+        - Used to add colours to the printed terminal messages
+- [GitHub](https://github.com/)
+    - Used to store code for the project after being pushed.
+- [Git](https://git-scm.com/)
+    - Used for version control by utilising the Gitpod terminal to commit to Git and Push to GitHub.
+- [Gitpod](https://www.gitpod.io/)
+    - Used as the development environment.
+- [Lucid](https://lucid.app/documents#/dashboard)
+    - Used to create the flowchart for the project.
+- [Grammarly](https://www.grammarly.com/)
+    - Used to fix the thousands of grammar errors across the project.
+- [Google Sheets](https://www.google.co.uk/sheets/about/)
+    - Used to store the 'Contacts' data used for the application.
 
 ## Testing
 
