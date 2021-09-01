@@ -257,6 +257,19 @@ def edit(contact, cell_index, info_type):
     print(contact)
 
 
+def delete(contact):
+    """
+    Retrieves cell index based upon search
+    and allows user to update cell by
+    adding a new entry.
+    """
+    cell = CONTACTS_WORKSHEET.find(contact[7])
+    print(cell.row)
+    print(f'{contact} now being deleted...\n')
+    cell.delete_row(cell.row)
+    print('Deleted.\n')
+
+
 # Edit existing contact
 def edit_existing_contact(contact):
     """

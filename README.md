@@ -1,11 +1,12 @@
 # My Contact Book
---
+---
+
 [Live application can be found here](https://my-contact-book-dgunn.herokuapp.com/)
 
-This is a command-line-interface application designed to allow the user to access their contacts book, retrieve specific contact information, edit/delete exisiting contacts & add new contact information. This project has been designed for educational purposes and uses the Code Insitutues mock terminal to run.
+This is a command-line-interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete exisiting contacts & add new contact information. This project has been designed for educational purposes and uses the Code Insitutues mock terminal to run.
 
 ## UX
-To begin planning this project I started first with UX, designing the logic of the programme based upon the user stories. As this is a command-line application there is no design featured as HTML & CSS have not been used.
+To begin planning this project I started first with UX, designing the logic of the programme based upon the user stories. As this is a command-line application there is no design featured as HTML & CSS have not been used; however I made the decision to use the Colored module so that I could add colour to some of the statements printed to the terminal. I chose to do this to provide visual ques for some of the messages, for example a green background for a *Save Complete* message.
 
 ### Strategy
 User Stories:
@@ -99,10 +100,10 @@ I followed the below steps using the Code Institute tutorial:
 - The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being commited.
 
 
-- Go to [Heroku.com](https://dashboard.heroku.com/apps) and login; if you do not already have an account then you will need to create one.
-- Click the `New` dropdown and select `Create New App`.
-- Enter a name for your new project, all Heroku apps need to have a unique name, you will be prompted if you need to change it.
-- Select the region you are working in.
+1. Go to [Heroku.com](https://dashboard.heroku.com/apps) and login; if you do not already have an account then you will need to create one.
+2. Click the `New` dropdown and select `Create New App`.
+3. Enter a name for your new project, all Heroku apps need to have a unique name, you will be prompted if you need to change it.
+4. Select the region you are working in.
 
 *Heroku Settings*
 You will need to set your Enviroment Variables - this is a key step to ensuring your application is deployed properly.
@@ -114,12 +115,12 @@ You will need to set your Enviroment Variables - this is a key step to ensuring 
 
 *Heroku Deployment*
 In the Deploy tab:
-- Connect your Heroku account to your Github Repository following these steps:
-    - Click on `Deploy` tab and choose `Github-Connect to Github`.
-    - Enter the GitHub repository name and click on `Search`.
-    - Choose the correct repository for your application adn click on `Connect`.
-- You can then choose to deploy the project manually or automatically, automatic deployment will generate a new application everytime you push a change to Github, whereas manual deployment requires you to push the `Deploy Branch` button whenever you want a change made.
-- Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built and you should see the below `View` button, click this to open your application:
+1. Connect your Heroku account to your Github Repository following these steps:
+    1. Click on `Deploy` tab and choose `Github-Connect to Github`.
+    2. Enter the GitHub repository name and click on `Search`.
+    3. Choose the correct repository for your application adn click on `Connect`.
+2. You can then choose to deploy the project manually or automatically, automatic deployment will generate a new application everytime you push a change to Github, whereas manual deployment requires you to push the `Deploy Branch` button whenever you want a change made.
+3. Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built and you should see the below `View` button, click this to open your application:
 
 ![](assets/images/heroku_deployed_image.png)
 ---
