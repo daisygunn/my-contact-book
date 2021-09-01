@@ -142,7 +142,10 @@ def save_to_worksheet(info):
         print(f'Now saving {info}....')
         worksheet_to_update = SHEET.worksheet('contact_list')
         worksheet_to_update.append_row(info)
-        print(fore.WHITE + back.GREEN_4 + style.BLINK + 'Save complete' + style.RESET)
+        print(
+            fore.WHITE + back.GREEN_4 + style.BLINK +
+            'Save complete' + style.RESET
+            )
         another_task()
     else:
         print('\nYou will now be taken to edit this contact...\n')
@@ -161,7 +164,10 @@ def search(info_type):
         search_by in record[info_type], retrieve_records()
         ))
     if len(result) != 0:
-        print(fore.WHITE + back.GREEN_4 + style.BOLD + "Contact found" + style.RESET)
+        print(
+            fore.WHITE + back.GREEN_4 + style.BOLD +
+            "Contact found" + style.RESET
+            )
         print_records(result)
         global contact_info
         user_input = pyip.inputYesNo('Would you like to edit this contact? \
