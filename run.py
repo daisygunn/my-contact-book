@@ -226,7 +226,7 @@ def add_new_contact():
     Allows user to add new contact information
     """
     print('To add a new contact please enter the details below, \
-type NA for any fields you wish to leave blank.')
+type NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('First Name: ').capitalize()
     last_name = pyip.inputStr('Last Name: ').capitalize()
     phone_number = pyip.inputStr('Phone Number: ', blockRegexes=['A-Za-z'])
@@ -252,7 +252,7 @@ def edit(contact, cell_index, info_type):
     print(cell.row, cell.col)
     new_value = pyip.inputStr(f'Enter new {info_type}: ').capitalize()
     contact[cell_index] = new_value
-    print(f'{info_type} now being updated...')
+    print(f'{info_type} now being updated...\n')
     update_worksheet(cell.row, cell.col, new_value)
     print(contact)
 
@@ -294,7 +294,7 @@ def edit_existing_contact(contact):
             ['Family', 'Favourites', 'General', 'Friends']
             )
         contact[5] = new_value
-        print('Group now being updated...')
+        print('Group now being updated...\n')
         update_worksheet(cell.row, cell.col, new_value)
         print(contact)
 
@@ -305,7 +305,7 @@ def run_programme():
     to run the programme
     """
     print(
-        fore.WHITE + back.DARK_ORANGE_3A + style.BOLD +
+        fore.WHITE + back.BLUE + style.BOLD +
         '\nWelcome to your contacts book application!\n' + style.RESET)
     main_menu_selection()
 
