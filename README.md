@@ -1,6 +1,6 @@
 # My Contact Book
 --
-[Live application can be found here]()
+[Live application can be found here](https://my-contact-book-dgunn.herokuapp.com/)
 
 This is a command-line-interface application designed to allow the user to access their contacts book, retrieve specific contact information, edit/delete exisiting contacts & add new contact information. This project has been designed for educational purposes and uses the Code Insitutues mock terminal to run.
 
@@ -119,8 +119,9 @@ In the Deploy tab:
     - Enter the GitHub repository name and click on `Search`.
     - Choose the correct repository for your application adn click on `Connect`.
 - You can then choose to deploy the project manually or automatically, automatic deployment will generate a new application everytime you push a change to Github, whereas manual deployment requires you to push the `Deploy Branch` button whenever you want a change made.
-- Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built. 
+- Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built and you should see the below `View` button, click this to open your application:
 
+![](assets/images/heroku_deployed_image.png)
 ---
 ## Credits
 
