@@ -13,6 +13,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Contacts sheet')
+CONTACTS_WORKSHEET = SHEET.worksheet('contact_list')
 
 
 # Function to validate user response based upon number selection
@@ -33,12 +34,10 @@ def main_menu_selection():
     If invalid choice is input then will continue to ask for a
     valid input.
     """
-    print(
-        fore.DARK_ORANGE_3A + style.BOLD +
-        "\nPlease select from the following options: \n")
+    print("\nPlease select from the following options: \n")
     print(
         "1.Retrieve all contacts\n2.Retreive specific contact\n\
-3.Add new contact\n4.Edit existing contact\n" + style.RESET)
+3.Add new contact\n4.Edit existing contact\n")
     while True:
         user_input = user_response(1, 4)
         if user_input == 1:
@@ -81,7 +80,7 @@ def retrieve_records():
     Function to retrieve all records found
     in the contacts list spreadhseet.
     """
-    return SHEET.worksheet('contact_list').get_all_records()
+    return CONTACTS_WORKSHEET.get_all_records()
 
 
 # Retrieve all contacts
@@ -128,10 +127,13 @@ def print_records_in_loop(record):
 
 # Update worksheet
 def update_worksheet(row, col, value):
-    worksheet_to_update = SHEET.worksheet('contact_list')
-    worksheet_to_update.update_cell(
-            row, col, value
+    worksheet_to_update = CONTACTS_WORKSHEET
+    worksheet_to_update.update_cell(row, col, value)
+    print(
+            fore.WHITE + back.GREEN_4 + style.BLINK +
+            'Change saved' + style.RESET
             )
+    another_task()
 
 
 # Save
@@ -140,7 +142,7 @@ def save_to_worksheet(info):
     user_input = pyip.inputYesNo()
     if user_input == 'yes':
         print(f'Now saving {info}....')
-        worksheet_to_update = SHEET.worksheet('contact_list')
+        worksheet_to_update = CONTACTS_WORKSHEET
         worksheet_to_update.append_row(info)
         print(
             fore.WHITE + back.GREEN_4 + style.BLINK +
@@ -246,7 +248,7 @@ def edit(contact, cell_index, info_type):
     and allows user to update cell by
     adding a new entry.
     """
-    cell = SHEET.worksheet('contact_list').find(contact[cell_index])
+    cell = CONTACTS_WORKSHEET.find(contact[cell_index])
     print(cell.row, cell.col)
     new_value = pyip.inputStr(f'Enter new {info_type}: ').capitalize()
     contact[cell_index] = new_value
@@ -287,7 +289,7 @@ def edit_existing_contact(contact):
         print(contact)
         another_task()
     elif user_input == 6:
-        cell = SHEET.worksheet('contact_list').find(contact[5])
+        cell = CONTACTS_WORKSHEET.find(contact[5])
         new_value = pyip.inputChoice(
             ['Family', 'Favourites', 'General', 'Friends']
             )
