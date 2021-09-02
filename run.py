@@ -121,7 +121,6 @@ def print_records_in_loop(record):
     print("Printing record...")
     global contact_info
     contact_info = []
-    1
     for key, value in record.items():
         print(f"{key}: {value}")
         contact_info.append(value)
@@ -180,6 +179,15 @@ def contact_id_creation():
     return new_contact_id
 
 
+def convert_to_list(option):
+    """
+    Function to convert contact dictionary to list
+    """
+    values = option.values()
+    values_list = list(values)
+    edit_existing_contact(values_list)
+
+
 # Search
 def search(info_type):
     """
@@ -201,32 +209,44 @@ def search(info_type):
         global contact_info
         user_input = pyip.inputInt('Select an option from the following:\n \
 1. Edit contact(s)\n 2. Delete contact(s)\n 3. Back to main menu\n')
+        """
+        If there is more than one contact returned
+        the user needs to be able to choose which
+        contact to edit or delete. If statement below
+        checks how many 'results' there are.
+        """
         if user_input == 1:
             if len(result) == 1:
                 edit_existing_contact(contact_info)
             elif len(result) == 2:
                 print(f'Two contacts with this {info_type} found')
                 a, b = result
-                a_name = (a.get('first_name')) + "" + (a.get('last_name'))
-                b_name = (b.get('first_name')) + "" + (b.get('last_name'))
-                print(f'Would you like to edit 1.{a_name}\
-                or 2.{b_name}?\n')
-                user_input = pyip.inputInt(min=1, max=2)
+                a_name = (a.get('first_name')) + " " + (a.get('last_name'))
+                b_name = (b.get('first_name')) + " " + (b.get('last_name'))
+                print(f'Would you like to edit 1.{a_name} \
+or 2.{b_name}?\n')
+                user_input = user_response(1, 2)
                 if user_input == 1:
-                    edit_existing_contact(a)
+                    print(f'Taking you to edit {a_name}...\n')
+                    convert_to_list(a)
                 else:
-                    edit_existing_contact(b)
+                    print(f'Taking you to edit {a_name}...\n')
+                    convert_to_list(b)
             elif len(result) == 3:
                 print(f'Three contacts with this {info_type} found')
                 a, b, c = result
-                print(f'Would you like to edit 1.{a}, 2.{b} or 3.{c}?\n')
-                user_input = pyip.inputInt(min=1, max=3)
+                a_name = (a.get('first_name')) + " " + (a.get('last_name'))
+                b_name = (b.get('first_name')) + " " + (b.get('last_name'))
+                c_name = (c.get('first_name')) + " " + (c.get('last_name'))
+                print(f'Would you like to edit 1.{a_name}, \
+2.{b_name} or 3.{c_name}?\n')
+                user_input = user_response(1, 3)
                 if user_input == 1:
-                    edit_existing_contact(a)
+                    convert_to_list(a)
                 elif user_input == 2:
-                    edit_existing_contact(b)
+                    convert_to_list(b)
                 else:
-                    edit_existing_contact(c)
+                    convert_to_list(c)
             else:
                 print('\nToo many contacts returned, please search by something\
 more specific.\n')
@@ -266,9 +286,7 @@ By selecting a number from the menu below:\n\
         elif user_input == 2:
             search('last_name')
         else:
-            phone_number = str(
-                pyip.inputPhone('*\nEnter phone number here:\n')
-                )
+            phone_number = str(pyip.inputInt('*\nEnter phone number here:\n'))
             result = filter(
                 lambda record: record['phone_number'] == phone_number or
                 phone_number in record['phone_number'], retrieve_records()
@@ -327,7 +345,10 @@ def edit(contact, cell_index, info_type):
     adding a new entry.
     """
     cell = CONTACTS_WORKSHEET.find(contact[cell_index])
-    new_value = pyip.inputStr(f'Enter new {info_type}: ').capitalize()
+    if cell_index == 2:
+        new_value = str(pyip.inputInt(f'Enter new {info_type}: ', min=11))
+    else:
+        new_value = pyip.inputStr(f'Enter new {info_type}: ').capitalize()
     contact[cell_index] = new_value
     print(f'{info_type} now being updated...\n')
     update_worksheet(cell.row, cell.col, new_value)
