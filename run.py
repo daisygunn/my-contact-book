@@ -50,7 +50,7 @@ def main_menu_selection():
             add_new_contact()
             break
         else:
-            edit_contact()
+            edit_contact_from_menu()
             break
         return False
 
@@ -228,7 +228,7 @@ def retrieve_one_contact():
     Function will then print all matches if they are found.
     """
     print("\nPlease select how you would like to search\n\
-by selecting a number from the menu below:\n\
+By selecting a number from the menu below:\n\
 \n1. Search by first name\n\
 2. Search by last name\n\
 3. Search by phone number\n")
@@ -252,6 +252,17 @@ by selecting a number from the menu below:\n\
 
 
 # Edit from main menu
+def edit_contact_from_menu():
+    """
+    Function to edit contact from the
+    main menu. User will need to search for
+    the contact first.
+    """
+    print(
+        '\nIn order to edit a contact, you will first need to search for them.'
+        )
+    print('\nTaking you to search now...')
+    retrieve_one_contact()
 
 
 # Add new contact
