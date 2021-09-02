@@ -242,7 +242,6 @@ def search(info_type):
             fore.WHITE + back.GREEN_4 + style.BOLD +
             "Contact found" + style.RESET
             )
-        print(result)
         print_records(result)
         global contact_info
         user_input = pyip.inputInt('Select an option from the following:\n \
@@ -290,11 +289,10 @@ or 2.{b_name}?\n')
 more specific.\n')
                 retrieve_one_contact()
         elif user_input == 2:
-            if len(result) > 6:
-                print('list is longer than one')
-                print(contact_info)
-            else:
-                delete(contact_info, 6)
+            validate_contacts(
+                len(result), contact_info, info_type,
+                delete, delete(contact_info, 6)
+                )
         else:
             main_menu_selection()
     else:
@@ -397,6 +395,7 @@ def delete(contact, index):
     and allows user to update cell by
     adding a new entry.
     """
+    print(contact)
     contact_id = str(contact[index])
     contact_row = CONTACTS_WORKSHEET.find(contact_id)
     row_number = contact_row.row
