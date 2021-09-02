@@ -46,13 +46,12 @@ def main_menu_selection():
         elif user_input == 2:
             retrieve_one_contact()
             break
-        else:
-            # user_input == 3:
+        elif user_input == 3:
             add_new_contact()
             break
-        # else:
-        #     # edit_existing_contact()
-        #     break
+        else:
+            edit_contact()
+            break
         return False
 
 
@@ -240,8 +239,9 @@ by selecting a number from the menu below:\n\
         elif user_input == 2:
             search('last_name')
         else:
-            phone_number = str(pyip.inputInt('*remember phone numbers are formatted \
-            like this: 079 8972 9384* \nEnter phone number here:\n'))
+            phone_number = str(
+                pyip.inputPhone('*\nEnter phone number here:\n')
+                )
             result = filter(
                 lambda record: record['phone_number'] == phone_number or
                 phone_number in record['phone_number'], retrieve_records()
@@ -253,16 +253,18 @@ by selecting a number from the menu below:\n\
 
 # Edit from main menu
 
+
 # Add new contact
 def add_new_contact():
     """
     Allows user to add new contact information
     """
-    print('To add a new contact please enter the details below, \
-type NA for any fields you wish to leave blank.\n')
-    first_name = pyip.inputStr('First Name: ').capitalize()
-    last_name = pyip.inputStr('Last Name: ').capitalize()
-    phone_number = pyip.inputStr('Phone Number: ', blockRegexes=['A-Za-z'])
+    print('To add a new contact please enter the details below.\n\
+All fields with a * are required. \
+Type NA for any fields you wish to leave blank.\n')
+    first_name = pyip.inputStr('*First Name: ').capitalize()
+    last_name = pyip.inputStr('*Last Name: ').capitalize()
+    phone_number = pyip.inputPhone('*Phone Number: ')
     email_address = pyip.inputEmail('Email Address: ')
     address = pyip.inputStr('Address: ')
     group = pyip.inputChoice(
@@ -301,11 +303,13 @@ def delete(contact, index):
     contact_id = str(contact[index])
     contact_row = CONTACTS_WORKSHEET.find(contact_id)
     row_number = contact_row.row
-    user_input = pyip.inputYesNo('Are you sure you want to delete this contact?\n')
+    user_input = pyip.inputYesNo(
+        '\nAre you sure you want to delete this contact?\n Y or N'
+        )
     if user_input == 'yes':
         print(f'{contact} now being deleted...\n')
         CONTACTS_WORKSHEET.delete_rows(row_number)
-        print('Deleted.\n')
+        print('Deletion complete.\n')
         another_task()
     else:
         another_task()
