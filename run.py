@@ -150,10 +150,10 @@ def save_to_worksheet(info):
     Function used when saving a contact
     to make changes to the worksheet.
     """
-    print('Would you like to save this contact?')
+    print('\nWould you like to save this contact?\n Y or N')
     user_input = pyip.inputYesNo()
     if user_input == 'yes':
-        print(f'Now saving {info}....')
+        print(f'\nNow saving {info}....\n')
         worksheet_to_update = CONTACTS_WORKSHEET
         worksheet_to_update.append_row(info)
         print(
@@ -187,7 +187,7 @@ def search(info_type):
     Function that returns result based upon
     user input and info type selected.
     """
-    search_by = pyip.inputStr(f'Enter {info_type}: ').capitalize()
+    search_by = pyip.inputStr(f'\nEnter {info_type}: ').capitalize()
     result = list(filter(
         lambda record: record[info_type] == search_by or
         search_by in record[info_type], retrieve_records()
@@ -212,7 +212,7 @@ def search(info_type):
                 print('list is longer than one')
                 print(contact_info)
             else:
-                delete(contact_info)
+                delete(contact_info, 6)
         else:
             another_task()
     else:
@@ -292,20 +292,21 @@ def edit(contact, cell_index, info_type):
     print(contact)
 
 
-def delete(contact):
+def delete(contact, index):
     """
     Retrieves cell index based upon search
     and allows user to update cell by
     adding a new entry.
     """
-    cell = CONTACTS_WORKSHEET.find(contact[6])
-    print(cell)
-    print(cell.row)
+    contact_id = str(contact[index])
+    contact_row = CONTACTS_WORKSHEET.find(contact_id)
+    row_number = contact_row.row
     user_input = pyip.inputYesNo('Are you sure you want to delete this contact?\n')
     if user_input == 'yes':
         print(f'{contact} now being deleted...\n')
-        # cell.delete_row(cell.row)
-        # print('Deleted.\n')
+        CONTACTS_WORKSHEET.delete_rows(row_number)
+        print('Deleted.\n')
+        another_task()
     else:
         another_task()
 
