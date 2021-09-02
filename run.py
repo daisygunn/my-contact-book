@@ -212,7 +212,7 @@ def search(info_type):
             else:
                 delete(contact_info, 6)
         else:
-            another_task()
+            main_menu_selection()
     else:
         print(
             fore.WHITE + back.RED + style.BLINK +
@@ -375,7 +375,13 @@ def run_programme():
     """
     print(
         fore.WHITE + back.BLUE + style.BOLD +
-        '\nWelcome to your contacts book application!\n' + style.RESET)
+        '\nWelcome to your contacts book application!\n')
+    print('\nInstructions:\n \
+- When presented with a number menu you need to type the relevant \
+number and press enter.\n   This will take you to your desired choice.\n\
+- If presented with a Y or N choice, please type Y or N in to the input field \
+and press enter.')
+    print('\nNow taking you to the main menu...\n' + style.RESET)
     main_menu_selection()
 
 
