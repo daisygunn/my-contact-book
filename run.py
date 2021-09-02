@@ -36,7 +36,7 @@ def main_menu_selection():
     """
     print("\nPlease select from the following options: \n")
     print(
-        "1.Retrieve all contacts\n2.Retreive specific contact\n\
+        "\n1.Retrieve all contacts\n2.Retreive specific contact\n\
 3.Add new contact\n4.Edit existing contact\n")
     while True:
         user_input = user_response(1, 4)
@@ -65,7 +65,7 @@ def another_task():
     This is called at the end of the
     other processes.
     """
-    print("Would you like to complete another task?")
+    print("\nWould you like to complete another task?\n")
     print("1. Yes, back to main menu\n\
 2. No, end programme")
     while True:
@@ -179,13 +179,51 @@ def contact_id_creation():
     return new_contact_id
 
 
-def convert_to_list(option):
+def convert_to_list_edit(option):
     """
     Function to convert contact dictionary to list
     """
     values = option.values()
     values_list = list(values)
     edit_existing_contact(values_list)
+
+
+def validate_contacts(result, contact_info, info_type, action, function):
+    if len(result) == 1:
+        function(contact_info)
+    elif len(result) == 2:
+        print(f'Two contacts with this {info_type} found')
+        a, b = result
+        a_name = (a.get('first_name')) + " " + (a.get('last_name'))
+        b_name = (b.get('first_name')) + " " + (b.get('last_name'))
+        print(f'Would you like to {action} 1.{a_name} \
+or 2.{b_name}?\n')
+        user_input = user_response(1, 2)
+        if user_input == 1:
+            print(f'Taking you to {action} {a_name}...\n')
+            function(a)
+        else:
+            print(f'Taking you to {action} {a_name}...\n')
+            function(b)
+    elif len(result) == 3:
+        print(f'Three contacts with this {info_type} found')
+        a, b, c = result
+        a_name = (a.get('first_name')) + " " + (a.get('last_name'))
+        b_name = (b.get('first_name')) + " " + (b.get('last_name'))
+        c_name = (c.get('first_name')) + " " + (c.get('last_name'))
+        print(f'Would you like to {action} 1.{a_name}, \
+2.{b_name} or 3.{c_name}?\n')
+        user_input = user_response(1, 3)
+        if user_input == 1:
+            function(a)
+        elif user_input == 2:
+            function(b)
+        else:
+            function(c)
+    else:
+        print('\nToo many contacts returned, please search by something\
+more specific.\n')
+        retrieve_one_contact()
 
 
 # Search
@@ -228,10 +266,10 @@ or 2.{b_name}?\n')
                 user_input = user_response(1, 2)
                 if user_input == 1:
                     print(f'Taking you to edit {a_name}...\n')
-                    convert_to_list(a)
+                    convert_to_list_edit(a)
                 else:
                     print(f'Taking you to edit {a_name}...\n')
-                    convert_to_list(b)
+                    convert_to_list_edit(b)
             elif len(result) == 3:
                 print(f'Three contacts with this {info_type} found')
                 a, b, c = result
@@ -242,11 +280,11 @@ or 2.{b_name}?\n')
 2.{b_name} or 3.{c_name}?\n')
                 user_input = user_response(1, 3)
                 if user_input == 1:
-                    convert_to_list(a)
+                    convert_to_list_edit(a)
                 elif user_input == 2:
-                    convert_to_list(b)
+                    convert_to_list_edit(b)
                 else:
-                    convert_to_list(c)
+                    convert_to_list_edit(c)
             else:
                 print('\nToo many contacts returned, please search by something\
 more specific.\n')
@@ -325,7 +363,8 @@ Type NA for any fields you wish to leave blank.\n')
     email_address = pyip.inputEmail('Email Address: ')
     address = pyip.inputStr('Address: ')
     group = pyip.inputChoice(
-        ['*Family', 'Favourites', 'General', 'Friends']
+        ['Family', 'Favourites', 'General', 'Friends'],
+        '*Choose category: Friends, Favourites, Family or General'
         )
     contact_id = contact_id_creation()
     new_contact_info = [
@@ -410,9 +449,10 @@ def edit_existing_contact(contact):
             ['Family', 'Favourites', 'General', 'Friends']
             )
         contact[5] = new_value
-        print('Group now being updated...\n')
+        print('\nGroup now being updated...\n')
         update_worksheet(cell.row, cell.col, new_value)
         print(contact)
+        another_task()
 
 
 def run_programme():
@@ -425,9 +465,9 @@ def run_programme():
         '\nWelcome to your contacts book application!\n')
     print('\nInstructions:\n \
 - When presented with a number menu you need to type the relevant \
-number and press enter.\n   This will take you to your desired choice.\n\
-- If presented with a Y or N choice, please type Y or N in to the input field \
-and press enter.')
+\n number and press enter. This will take you to your desired choice.\n\
+- If presented with a Y or N choice, \n please type Y or \
+N in to the input field and press enter.')
     print('\nNow taking you to the main menu...\n' + style.RESET)
     main_menu_selection()
 
