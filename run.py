@@ -121,6 +121,7 @@ def print_records_in_loop(record):
     print("Printing record...")
     global contact_info
     contact_info = []
+    1
     for key, value in record.items():
         print(f"{key}: {value}")
         contact_info.append(value)
@@ -195,16 +196,41 @@ def search(info_type):
             fore.WHITE + back.GREEN_4 + style.BOLD +
             "Contact found" + style.RESET
             )
+        print(result)
         print_records(result)
         global contact_info
         user_input = pyip.inputInt('Select an option from the following:\n \
-1. Edit this contact\n 2. Delete this contact\n 3. Back to main menu\n')
+1. Edit contact(s)\n 2. Delete contact(s)\n 3. Back to main menu\n')
         if user_input == 1:
-            if len(result) > 6:
-                print('list is longer than one')
-                print(contact_info)
-            else:
+            if len(result) == 1:
                 edit_existing_contact(contact_info)
+            elif len(result) == 2:
+                print(f'Two contacts with this {info_type} found')
+                a, b = result
+                a_name = (a.get('first_name')) + "" + (a.get('last_name'))
+                b_name = (b.get('first_name')) + "" + (b.get('last_name'))
+                print(f'Would you like to edit 1.{a_name}\
+                or 2.{b_name}?\n')
+                user_input = pyip.inputInt(min=1, max=2)
+                if user_input == 1:
+                    edit_existing_contact(a)
+                else:
+                    edit_existing_contact(b)
+            elif len(result) == 3:
+                print(f'Three contacts with this {info_type} found')
+                a, b, c = result
+                print(f'Would you like to edit 1.{a}, 2.{b} or 3.{c}?\n')
+                user_input = pyip.inputInt(min=1, max=3)
+                if user_input == 1:
+                    edit_existing_contact(a)
+                elif user_input == 2:
+                    edit_existing_contact(b)
+                else:
+                    edit_existing_contact(c)
+            else:
+                print('\nToo many contacts returned, please search by something\
+more specific.\n')
+                retrieve_one_contact()
         elif user_input == 2:
             if len(result) > 6:
                 print('list is longer than one')
@@ -216,7 +242,7 @@ def search(info_type):
     else:
         print(
             fore.WHITE + back.RED + style.BLINK +
-            "No contact with that name found" + style.RESET)
+            "\nNo contact with that name found\n" + style.RESET)
         print('\nYou will now be taken back to search again...\n')
         retrieve_one_contact()
 
@@ -260,9 +286,10 @@ def edit_contact_from_menu():
     the contact first.
     """
     print(
-        '\nIn order to edit a contact, you will first need to search for them.'
+        '\nIn order to edit a contact, \
+you will first need to search for them.\n'
         )
-    print('\nTaking you to search now...')
+    print('\nTaking you to search now...\n')
     retrieve_one_contact()
 
 
@@ -304,7 +331,6 @@ def edit(contact, cell_index, info_type):
     contact[cell_index] = new_value
     print(f'{info_type} now being updated...\n')
     update_worksheet(cell.row, cell.col, new_value)
-    print(contact)
 
 
 def delete(contact, index):
