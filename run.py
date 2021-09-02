@@ -102,7 +102,7 @@ def retrieve_all_contacts():
     another_task()
 
 
-def print_records(records):
+def print_records(records, function=None):
     """
     Function to print a single contact.
     To be used in the contact search functions.
@@ -155,7 +155,9 @@ def save_to_worksheet(info):
         fore.WHITE + back.GREEN_4 + style.BLINK +
         'Save complete' + style.RESET
         )
-    user_input = pyip.inputYesNo('\nWould you like to edit this contact? (Y/N): ')
+    user_input = pyip.inputYesNo(
+        '\nWould you like to edit this contact? (Y/N): '
+        )
     if user_input == 'yes':
         print('\nYou will now be taken to edit this contact...\n')
         edit_existing_contact(info)
@@ -223,6 +225,27 @@ or 2.{b_name}?\n')
         print('\nToo many contacts returned, please search by something\
 more specific.\n')
         retrieve_one_contact()
+
+
+def select_from_multiple_records(contacts):
+    def print_record(record):
+        for key, value in record.items():
+            print(f"{key}: {value}")
+
+    def print_records_as_options(records, function=None):
+        """
+        Function to print a single contact.
+        To be used in the contact search functions.
+        """
+        for idx, record in enumerate(records):
+            print(f"\nRecord: {idx}\n")
+            print_record(record)
+
+    print('List of record')
+    print_records_as_options(contacts, print_record)
+    user_input = pyip.inputInt('Enter the record number: ',
+                               min=1, max=len(contacts))
+    return contacts[user_input+1]
 
 
 # Search
@@ -321,9 +344,7 @@ more specific.\n')
 #                     convert_to_list_edit(b)
 #                 else:
 #                     convert_to_list_edit(c)
-#             else:
-#                 print('\nToo many contacts returned, please search by something\
-# more specific.\n')
+#             else:  
 #                 retrieve_one_contact()
         else:
             main_menu_selection()
@@ -411,7 +432,7 @@ def edit(contact, cell_index, info_type):
     being edited, allows user to update cell by
     adding a new entry.
     """
-    cell = CONTACTS_WORKSHEET.find(contact[cell_index])
+    cell = CONTACTS_WORKSHEET.find(str(contact[cell_index]))
     if cell_index == 2:
         new_value = str(pyip.inputInt(f'Enter new {info_type}: ', min=11))
     else:
