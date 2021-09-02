@@ -268,8 +268,10 @@ type NA for any fields you wish to leave blank.\n')
     group = pyip.inputChoice(
         ['Family', 'Favourites', 'General', 'Friends']
         )
+    contact_id = contact_id_creation()
     new_contact_info = [
-        first_name, last_name, phone_number, email_address, address, group
+        first_name, last_name, phone_number,
+        email_address, address, group, contact_id
         ]
     print(new_contact_info)
     save_to_worksheet(new_contact_info)
@@ -362,5 +364,4 @@ def run_programme():
 
 
 # retrieve_one_contact()
-# run_programme()
-contact_id_creation()
+run_programme()
