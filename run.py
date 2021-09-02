@@ -276,7 +276,9 @@ All fields with a * are required. \
 Type NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('*First Name: ').capitalize()
     last_name = pyip.inputStr('*Last Name: ').capitalize()
-    phone_number = pyip.inputPhone('*Phone Number: ')
+    phone_number = pyip.inputInt(
+        '*Phone Number: ', min=11
+        )
     email_address = pyip.inputEmail('Email Address: ')
     address = pyip.inputStr('Address: ')
     group = pyip.inputChoice(
@@ -315,7 +317,7 @@ def delete(contact, index):
     contact_row = CONTACTS_WORKSHEET.find(contact_id)
     row_number = contact_row.row
     user_input = pyip.inputYesNo(
-        '\nAre you sure you want to delete this contact?\n Y or N'
+        '\nAre you sure you want to delete this contact?\n Y or N\n'
         )
     if user_input == 'yes':
         print(f'{contact} now being deleted...\n')
@@ -387,3 +389,4 @@ and press enter.')
 
 # retrieve_one_contact()
 run_programme()
+# add_new_contact()
