@@ -77,7 +77,7 @@ def another_task():
         else:
             print(
                 fore.WHITE + back.DARK_GRAY + style.BOLD +
-                "Programme shutting down...\n")
+                "Programme shutting down...\n" + style.RESET)
             break
 
 
@@ -140,7 +140,6 @@ def update_worksheet(row, col, value):
             fore.WHITE + back.GREEN_4 + style.BLINK +
             'Change saved' + style.RESET
             )
-    another_task()
 
 
 # Save
@@ -218,6 +217,8 @@ def search(info_type):
         print(
             fore.WHITE + back.RED + style.BLINK +
             "No contact with that name found" + style.RESET)
+        print('\nYou will now be taken back to search again...\n')
+        retrieve_one_contact()
 
 
 # Retrieve one contact
@@ -297,7 +298,6 @@ def edit(contact, cell_index, info_type):
     adding a new entry.
     """
     cell = CONTACTS_WORKSHEET.find(contact[cell_index])
-    print(cell.row, cell.col)
     new_value = pyip.inputStr(f'Enter new {info_type}: ').capitalize()
     contact[cell_index] = new_value
     print(f'{info_type} now being updated...\n')
