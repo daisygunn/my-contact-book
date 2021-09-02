@@ -148,20 +148,20 @@ def save_to_worksheet(info):
     Function used when saving a contact
     to make changes to the worksheet.
     """
-    print('\nWould you like to save this contact?\n Y or N')
+    print(f'\nNow saving {info}....\n')
+    worksheet_to_update = CONTACTS_WORKSHEET
+    worksheet_to_update.append_row(info)
+    print(
+        fore.WHITE + back.GREEN_4 + style.BLINK +
+        'Save complete' + style.RESET
+        )
+    print('\nWould you like to edit this contact?\n Y or N')
     user_input = pyip.inputYesNo()
     if user_input == 'yes':
-        print(f'\nNow saving {info}....\n')
-        worksheet_to_update = CONTACTS_WORKSHEET
-        worksheet_to_update.append_row(info)
-        print(
-            fore.WHITE + back.GREEN_4 + style.BLINK +
-            'Save complete' + style.RESET
-            )
-        another_task()
-    else:
         print('\nYou will now be taken to edit this contact...\n')
         edit_existing_contact(info)
+    else:
+        another_task()
 
 
 # Get new contact_ID
@@ -321,13 +321,11 @@ All fields with a * are required. \
 Type NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('*First Name: ').capitalize()
     last_name = pyip.inputStr('*Last Name: ').capitalize()
-    phone_number = pyip.inputInt(
-        '*Phone Number: ', min=11
-        )
+    phone_number = pyip.inputInt('*Phone Number: ', min=11)
     email_address = pyip.inputEmail('Email Address: ')
     address = pyip.inputStr('Address: ')
     group = pyip.inputChoice(
-        ['Family', 'Favourites', 'General', 'Friends']
+        ['*Family', 'Favourites', 'General', 'Friends']
         )
     contact_id = contact_id_creation()
     new_contact_info = [
