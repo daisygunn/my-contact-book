@@ -155,8 +155,7 @@ def save_to_worksheet(info):
         fore.WHITE + back.GREEN_4 + style.BLINK +
         'Save complete' + style.RESET
         )
-    print('\nWould you like to edit this contact?\n Y or N')
-    user_input = pyip.inputYesNo()
+    user_input = pyip.inputYesNo('\nWould you like to edit this contact? (Y/N): ')
     if user_input == 'yes':
         print('\nYou will now be taken to edit this contact...\n')
         edit_existing_contact(info)
@@ -253,6 +252,7 @@ def search(info_type):
         checks how many 'results' there are.
         """
         if user_input == 1:
+            # Edit
             if len(result) == 1:
                 edit_existing_contact(contact_info)
             elif len(result) == 2:
@@ -288,11 +288,43 @@ or 2.{b_name}?\n')
                 print('\nToo many contacts returned, please search by something\
 more specific.\n')
                 retrieve_one_contact()
-        elif user_input == 2:
-            validate_contacts(
-                len(result), contact_info, info_type,
-                delete, delete(contact_info, 6)
-                )
+        #Delete
+#         elif user_input == 2:
+#             if len(result) == 1:
+#                 delete(contact_info, 6)
+#             elif len(result) == 2:
+#                 print(f'Two contacts with this {info_type} found')
+#                 a, b = result
+#                 a_name = (a.get('first_name')) + " " + (a.get('last_name'))
+#                 b_name = (b.get('first_name')) + " " + (b.get('last_name'))
+#                 print(f'Would you like to delete 1.{a_name} \
+# or 2.{b_name}?\n')
+#                 user_input = user_response(1, 2)
+#                 if user_input == 1:
+#                     print(f'Taking you to delete {a_name}...\n')
+#                     convert_to_list_edit(a)
+#                 else:
+#                     print(f'Taking you to delete {a_name}...\n')
+#                     convert_to_list_edit(b)
+#             elif len(result) == 3:
+#                 print(f'Three contacts with this {info_type} found')
+#                 a, b, c = result
+#                 a_name = (a.get('first_name')) + " " + (a.get('last_name'))
+#                 b_name = (b.get('first_name')) + " " + (b.get('last_name'))
+#                 c_name = (c.get('first_name')) + " " + (c.get('last_name'))
+#                 print(f'Would you like to delete1.{a_name}, \
+# 2.{b_name} or 3.{c_name}?\n')
+#                 user_input = user_response(1, 3)
+#                 if user_input == 1:
+#                     convert_to_list_edit(a)
+#                 elif user_input == 2:
+#                     convert_to_list_edit(b)
+#                 else:
+#                     convert_to_list_edit(c)
+#             else:
+#                 print('\nToo many contacts returned, please search by something\
+# more specific.\n')
+#                 retrieve_one_contact()
         else:
             main_menu_selection()
     else:
@@ -362,7 +394,7 @@ Type NA for any fields you wish to leave blank.\n')
     address = pyip.inputStr('Address: ')
     group = pyip.inputChoice(
         ['Family', 'Favourites', 'General', 'Friends'],
-        '*Choose category: Friends, Favourites, Family or General'
+        '*Choose category: Friends, Favourites, Family or General\n'
         )
     contact_id = contact_id_creation()
     new_contact_info = [
