@@ -102,11 +102,9 @@ def print_records(records):
     To be used in the contact search functions.
     """
     print("\nNow printing your contact(s)...\n")
-    # records_list = list(records)
-    # print(records_list)
     for record in records:
         print_records_in_loop(record)
-        return record
+        
 
 
 def print_records_in_loop(record):
@@ -126,6 +124,10 @@ def print_records_in_loop(record):
 
 
 # Update worksheet
+"""
+Function used when editing a contact
+to make changes to the worksheet.
+"""
 def update_worksheet(row, col, value):
     worksheet_to_update = CONTACTS_WORKSHEET
     worksheet_to_update.update_cell(row, col, value)
@@ -137,6 +139,10 @@ def update_worksheet(row, col, value):
 
 
 # Save
+"""
+Function used when saving a contact
+to make changes to the worksheet.
+"""
 def save_to_worksheet(info):
     print('Would you like to save this contact?')
     user_input = pyip.inputYesNo()
@@ -172,14 +178,20 @@ def search(info_type):
             )
         print_records(result)
         global contact_info
-        user_input = pyip.inputYesNo('Would you like to edit this contact? \
-# Type yes or no -')
-        if user_input == 'yes':
+        user_input = pyip.inputInt('Select an option from the following:\n \
+1. Edit this contact\n 2. Delete this contact\n 3. Back to main menu\n')
+        if user_input == 1:
             if len(result) > 6:
                 print('list is longer than one')
                 print(contact_info)
             else:
                 edit_existing_contact(contact_info)
+        elif user_input == 2:
+            if len(result) > 6:
+                print('list is longer than one')
+                print(contact_info)
+            else:
+                delete(contact_info)
         else:
             another_task()
     else:
@@ -244,8 +256,8 @@ type NA for any fields you wish to leave blank.\n')
 
 def edit(contact, cell_index, info_type):
     """
-    Retrieves cell index based upon search
-    and allows user to update cell by
+    Cell index is based upon which field is
+    being edited, allows user to update cell by
     adding a new entry.
     """
     cell = CONTACTS_WORKSHEET.find(contact[cell_index])
@@ -263,11 +275,16 @@ def delete(contact):
     and allows user to update cell by
     adding a new entry.
     """
-    cell = CONTACTS_WORKSHEET.find(contact[7])
+    cell = CONTACTS_WORKSHEET.find(contact[6])
+    print(cell)
     print(cell.row)
-    print(f'{contact} now being deleted...\n')
-    cell.delete_row(cell.row)
-    print('Deleted.\n')
+    user_input = pyip.inputYesNo('Are you sure you want to delete this contact?\n')
+    if user_input == 'yes':
+        print(f'{contact} now being deleted...\n')
+        # cell.delete_row(cell.row)
+        # print('Deleted.\n')
+    else:
+        another_task()
 
 
 # Edit existing contact
@@ -323,5 +340,5 @@ def run_programme():
     main_menu_selection()
 
 
-# retrieve_one_contact()
-run_programme()
+retrieve_one_contact()
+# run_programme()
