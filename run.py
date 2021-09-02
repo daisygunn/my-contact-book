@@ -59,6 +59,13 @@ def main_menu_selection():
 # Function for user to choose if they want to complete another task
 # or shut the programme down
 def another_task():
+    """
+    Function to take users back to the
+    main menu if they have something else
+    they would like to do.
+    This is called at the end of the
+    other processes.
+    """
     print("Would you like to complete another task?")
     print("1. Yes, back to main menu\n\
 2. No, end programme")
@@ -104,7 +111,6 @@ def print_records(records):
     print("\nNow printing your contact(s)...\n")
     for record in records:
         print_records_in_loop(record)
-        
 
 
 def print_records_in_loop(record):
@@ -124,11 +130,11 @@ def print_records_in_loop(record):
 
 
 # Update worksheet
-"""
-Function used when editing a contact
-to make changes to the worksheet.
-"""
 def update_worksheet(row, col, value):
+    """
+    Function used when editing a contact
+    to make changes to the worksheet.
+    """
     worksheet_to_update = CONTACTS_WORKSHEET
     worksheet_to_update.update_cell(row, col, value)
     print(
@@ -139,11 +145,11 @@ def update_worksheet(row, col, value):
 
 
 # Save
-"""
-Function used when saving a contact
-to make changes to the worksheet.
-"""
 def save_to_worksheet(info):
+    """
+    Function used when saving a contact
+    to make changes to the worksheet.
+    """
     print('Would you like to save this contact?')
     user_input = pyip.inputYesNo()
     if user_input == 'yes':
@@ -158,6 +164,21 @@ def save_to_worksheet(info):
     else:
         print('\nYou will now be taken to edit this contact...\n')
         edit_existing_contact(info)
+
+
+# Get new contact_ID
+def contact_id_creation():
+    """
+    Function called to generate
+    a new contact ID, based upon
+    the previous entry. Needed when
+    adding new contact information.
+    """
+    all_values = CONTACTS_WORKSHEET.get_all_values()
+    previous_row = all_values[-1]
+    previous_contact_id = int(previous_row[6])
+    new_contact_id = str(previous_contact_id + 1)
+    return new_contact_id
 
 
 # Search
@@ -340,5 +361,6 @@ def run_programme():
     main_menu_selection()
 
 
-retrieve_one_contact()
+# retrieve_one_contact()
 # run_programme()
+contact_id_creation()
