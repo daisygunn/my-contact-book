@@ -17,12 +17,12 @@ CONTACTS_WORKSHEET = SHEET.worksheet('contact_list')
 
 
 # Function to validate user response based upon number selection
-def user_response(min_value, max_value):
+def user_response(message, min_value, max_value):
     """
     Function used throughout programme
     to validate users input from a list of choices.
     """
-    input = pyip.inputInt(min=min_value, max=max_value)
+    input = pyip.inputInt(prompt=message, min=min_value, max=max_value)
     return input
 
 
@@ -34,12 +34,13 @@ def main_menu_selection():
     If invalid choice is input then will continue to ask for a
     valid input.
     """
-    print("\nPlease select from the following options: \n")
     print(
         "\n1.Retrieve all contacts\n2.Retreive specific contact\n\
 3.Add new contact\n4.Edit existing contact\n")
     while True:
-        user_input = user_response(1, 4)
+        user_input = user_response(
+            "Please enter a number from the above options: ", 1, 4
+            )
         if user_input == 1:
             retrieve_all_contacts()
             break
@@ -69,7 +70,9 @@ def another_task():
     print("1. Yes, back to main menu\n\
 2. No, end programme")
     while True:
-        user_input = user_response(1, 2)
+        user_input = user_response(
+            "Please enter a number from the above options: ", 1, 2
+            )
         if user_input == 1:
             print("\nNow taking you back to the main menu...\n")
             main_menu_selection()
@@ -234,8 +237,11 @@ def search(info_type):
             )
         print_records(result)
         global contact_info
-        user_input = pyip.inputInt('Select an option from the following:\n \
-1. Edit contact(s)\n 2. Delete contact(s)\n 3. Back to main menu\n')
+        print('1. Edit contact(s)\n 2. Delete contact(s)\n \
+3. Back to main menu\n')
+        user_input = user_response(
+            "Please enter a number from the above options: ", 1, 3
+            )
         """
         If there is more than one contact returned
         the user needs to be able to choose which
@@ -277,13 +283,14 @@ def retrieve_one_contact():
     either by first name, last name or phone number.
     Function will then print all matches if they are found.
     """
-    print("\nPlease select how you would like to search\n\
-By selecting a number from the menu below:\n\
-\n1. Search by first name\n\
-2. Search by last name\n\
-3. Search by phone number\n")
+    print("\nHow would you like to search?\n\
+\n1. By first name\n\
+2. By last name\n\
+3. By phone number\n")
     while True:
-        user_input = user_response(1, 3)
+        user_input = user_response(
+            "Please enter a number from the above options: ", 1, 3
+            )
         if user_input == 1:
             search('first_name')
         elif user_input == 2:
@@ -389,7 +396,9 @@ def edit_existing_contact(contact):
     print('\nWhich value would you like to change?\n \
 1.First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
 5.Address\n 6.Group\n')
-    user_input = user_response(1, 6)
+    user_input = user_response(
+        "Please enter a number from the above options: ", 1, 6
+        )
     if user_input == 1:
         edit(contact, 0, 'first name')
         another_task()
