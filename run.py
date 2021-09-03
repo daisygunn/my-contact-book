@@ -180,13 +180,18 @@ def contact_id_creation():
     return new_contact_id
 
 
-def convert_to_list_edit(option):
+def convert_to_list_action(option, action):
     """
     Function to convert contact dictionary to list
     """
     values = option.values()
     values_list = list(values)
-    edit_existing_contact(values_list)
+    if action == 'edit':
+        edit_existing_contact(values_list)
+    elif action == 'delete':
+        delete(values_list, 6)
+    else:
+        print('Invalid action has been defined.')
 
 
 def select_from_multiple_records(contacts):
@@ -208,7 +213,8 @@ def select_from_multiple_records(contacts):
     user_input = pyip.inputInt(
         'Enter the record number of the contact you would like to action: ',
         min=1, max=len(contacts))
-    return contacts[user_input+1]
+    return contacts[user_input]
+
 
 # Search
 def search(info_type):
@@ -228,7 +234,6 @@ def search(info_type):
             )
         print_records(result)
         global contact_info
-        import pdb; pdb.set_trace()
         user_input = pyip.inputInt('Select an option from the following:\n \
 1. Edit contact(s)\n 2. Delete contact(s)\n 3. Back to main menu\n')
         """
@@ -241,35 +246,9 @@ def search(info_type):
             # Edit
             if len(result) == 1:
                 edit_existing_contact(contact_info)
-            elif len(result) == 2:
-                print(f'Two contacts with this {info_type} found')
-                a, b = result
-                a_name = (a.get('first_name')) + " " + (a.get('last_name'))
-                b_name = (b.get('first_name')) + " " + (b.get('last_name'))
-                print(f'Would you like to edit 1.{a_name} \
-or 2.{b_name}?\n')
-                user_input = user_response(1, 2)
-                if user_input == 1:
-                    print(f'Taking you to edit {a_name}...\n')
-                    convert_to_list_edit(a)
-                else:
-                    print(f'Taking you to edit {a_name}...\n')
-                    convert_to_list_edit(b)
-            elif len(result) == 3:
-                print(f'Three contacts with this {info_type} found')
-                a, b, c = result
-                a_name = (a.get('first_name')) + " " + (a.get('last_name'))
-                b_name = (b.get('first_name')) + " " + (b.get('last_name'))
-                c_name = (c.get('first_name')) + " " + (c.get('last_name'))
-                print(f'Would you like to edit 1.{a_name}, \
-2.{b_name} or 3.{c_name}?\n')
-                user_input = user_response(1, 3)
-                if user_input == 1:
-                    convert_to_list_edit(a)
-                elif user_input == 2:
-                    convert_to_list_edit(b)
-                else:
-                    convert_to_list_edit(c)
+            elif len(result) > 1:
+                contact_choice = select_from_multiple_records(result)
+                convert_to_list_action(contact_choice, 'edit')
             else:
                 print('\nToo many contacts returned, please search by something\
 more specific.\n')
@@ -280,7 +259,7 @@ more specific.\n')
                 delete(contact_info, 6)
             elif len(result) > 1:
                 contact_choice = select_from_multiple_records(result)
-                delete(contact_choice, 6)
+                convert_to_list_action(contact_choice, 'delete')
         else:
             main_menu_selection()
     else:
