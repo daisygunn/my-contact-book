@@ -35,8 +35,8 @@ def main_menu_selection():
     valid input.
     """
     print(
-        "\n1.Retrieve all contacts\n2.Retreive specific contact\n\
-3.Add new contact\n4.Edit existing contact\n")
+        "\n1. Retrieve all contacts\n2. Search contacts\n\
+3. Add new contact\n4. Edit existing contact\n")
     while True:
         user_input = user_response(
             "\nPlease enter a number from the above options: ", 1, 4
@@ -351,9 +351,9 @@ def add_new_contact():
     """
     Allows user to add new contact information
     """
-    print('To add a new contact please enter the details below.\n\
-All fields with a * are required. \
-Type NA for any fields you wish to leave blank.\n')
+    print('\nTo add a new contact please enter the details below.\n\
+\nAll fields with a * are required.\n\
+\nType NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('*First Name: ').capitalize()
     last_name = pyip.inputStr('*Last Name: ').capitalize()
     phone_number = pyip.inputInt('*Phone Number: ', min=11)
