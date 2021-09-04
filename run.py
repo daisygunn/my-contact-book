@@ -232,18 +232,36 @@ def search(info_type):
     Function that returns result based upon
     user input and info type selected.
     """
-    search_by = pyip.inputStr(f'\nEnter {info_type}: ').capitalize()
+    if info_type == 'category':
+        user_input = user_response('*Choose category to search by: 1.Friends, \
+2.Favourites, 3.Family or 4.General: ', 1, 4)
+        if user_input == 1:
+            category = 'Friends'
+        elif user_input == 2:
+            category = 'Favourites'
+        elif user_input == 3:
+            category = 'Family'
+        else:
+            category = 'General'
+        search_by = category
+    elif info_type == 'phone_number':
+        phone_number = str(pyip.inputInt('*\nEnter phone number here:\n'))
+        search_by = phone_number
+    else:
+        search_by = pyip.inputStr(f'\nEnter {info_type}: ').capitalize()
+    # Filter function used to search within the worksheet
     result = list(filter(
         lambda record: record[info_type] == search_by or
         search_by in record[info_type], retrieve_records()
         ))
+    # If there are any results found
     if len(result) != 0:
         print(
             fore.WHITE + back.GREEN_4 + style.BOLD +
             "Contact found" + style.RESET
             )
         print_records(result)
-        print('1. Edit contact(s)\n 2. Delete contact(s)\n \
+        print('1. Edit contact(s)\n2. Delete contact(s)\n\
 3. Back to main menu\n')
         user_input = user_response(
             "\nPlease enter a number from the above options: ", 1, 3
@@ -274,6 +292,7 @@ more specific.\n')
                 convert_to_list_action(contact_choice, 'delete')
         else:
             main_menu_selection()
+    # If no results are found
     else:
         print(
             fore.WHITE + back.RED + style.BLINK +
@@ -303,30 +322,9 @@ def search_contacts():
         elif user_input == 2:
             search('last_name')
         elif user_input == 3:
-            user_input = user_response('*Choose category to search by: 1.Friends, \
-2.Favourites, 3.Family or 4.General: ', 1, 4)
-            if user_input == 1:
-                category = 'Friends'
-            elif user_input == 2:
-                category = 'Favourites'
-            elif user_input == 3:
-                category = 'Family'
-            else:
-                category = 'General'
-            result = filter(
-                lambda record: record['category'] == category,
-                retrieve_records()
-                )
-            print_records(result)
-            break
+            search('category')
         else:
-            phone_number = str(pyip.inputInt('*\nEnter phone number here:\n'))
-            result = filter(
-                lambda record: record['phone_number'] == phone_number or
-                phone_number in record['phone_number'], retrieve_records()
-                )
-            print_records(result)
-            break
+            search('phone_number')
         return False
 
 
