@@ -346,6 +346,22 @@ you will first need to search for them.\n'
     search_contacts()
 
 
+def validate_phone_number():
+    """
+    Function to validate phone number entries,
+    enusring they are 10 digits only
+    (the 0 at the beginning is not counted)
+    """
+    while True:
+        phone_number = str(pyip.inputInt('*Phone Number: '))
+        if len(phone_number) < 10 or len(phone_number) > 10:
+            print(len(phone_number))
+            print("Phone number must be 11 digits long. \
+Please note only UK numbers allowed.")
+        else:
+            return phone_number
+
+
 # Add new contact
 def add_new_contact():
     """
@@ -356,7 +372,7 @@ def add_new_contact():
 \nType NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('*First Name: ').capitalize()
     last_name = pyip.inputStr('*Last Name: ').capitalize()
-    phone_number = pyip.inputInt('*Phone Number: ', min=11)
+    phone_number = validate_phone_number()
     email_address = pyip.inputEmail('*Email Address: ', allowRegexes='NA')
     address = pyip.inputStr('Address: ')
     user_input = user_response('*Choose category: 1.Friends, \
@@ -386,7 +402,7 @@ def edit(contact, cell_index, info_type):
     """
     cell = CONTACTS_WORKSHEET.find(str(contact[cell_index]))
     if cell_index == 2:
-        new_value = str(pyip.inputInt(f'Enter new {info_type}: ', min=11))
+        new_value = validate_phone_number()
     else:
         new_value = pyip.inputStr(f'Enter new {info_type}: ').capitalize()
     contact[cell_index] = new_value

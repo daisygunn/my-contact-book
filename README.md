@@ -90,27 +90,35 @@ I have used several technologies that have enabled this design to work:
 ### User Stories
 *'As a user, I want to be able to easily access all of my contacts at once.'*  
 This is one of the choices from the main menu, if the user selects option 1 all of their contacts are printed to the terminal.
+
 ![](assets/images/retrieve_contacts.png)
 
 *'As a user, I want to be able to retrieve a contact's information based upon their name or number.'*  
 This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/number/category. If there is a match found it is printed to the terminal. 
 
+![](assets/images/contact_search_image.png)
+
 *'As a user, I want to add new contact information.'*  
 This is one of the choices from the main menu, if the user selects option 3, they are taken to add a new contact. The user is asked to input a value for: First Name, Last Name, Phone Number, Email, Address, Category. 
+
 ![](assets/images/add_contact.png)
 
 *'As a user, I want to update an existing contact's information if there has been a change.'*  
 This is one of the choices from the main menu, if the user selects option 4, they are taken to search their contacts by either name/number/category. If there is a match found it is printed to the terminal. 
+
 ![](assets/images/edit_contact.png)
 ![](assets/images/edit_contact_saved.png)
 
 *'As a user, I want to be able to download contact information by group (family/friends).'*    
 This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/number/category. After the user chooses to search by category they will be asked which category to search by 1.Friends, 2.Favourites, 3.Family or 4.General. All contacts with the relevant category will be printed to the terminal.
+
 ![](assets/images/category_search.png)
 
 *'As a user, I want to be able to delete a contact entry.'*  
 After searching for a contact the user will be given the option to delete it, if they choose this option the contact is deleted from the worksheet.
+
 ![](assets/images/delete.png)
+
 ---
 ## Deployment
 
