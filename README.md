@@ -61,24 +61,24 @@ I have used several technologies that have enabled this design to work:
 User Stories:
 - As a user, I want to be able to easily access all of my contacts at once.
 
-![](assets/retrieve_contacts.png)
+![](assets/images/retrieve_contacts.png)
 
 - As a user, I want to be able to retrieve a contact's information based upon their name or number.
 
-![](assets/contact_search_image.png)
+![](assets/images/contact_search_image.png)
 
 - As a user, I want to update an existing contact's information if there has been a change.
 
-![](assets/edit_contact.png)
-![](assets/edit_contact_saved.png)
+![](assets/images/edit_contact.png)
+![](assets/images/edit_contact_saved.png)
 
 - As a user, I want to be able to download contact information by group (family/friends).
 
-![](assets/category_search.png)
+![](assets/images/category_search.png)
 
 - As a user, I want to be able to delete a contact entry.
 
-![](assets/delete.png)
+![](assets/images/delete.png)
 ---
 ## Deployment
 
