@@ -312,10 +312,11 @@ def search_contacts():
 1. By first name\n\
 2. By last name\n\
 3. By category\n\
-4. By phone number\n")
+4. By phone number\n\
+5. Exit")
     while True:
         user_input = user_response(
-            "\nPlease enter a number from the above options: ", 1, 4
+            "\nPlease enter a number from the above options: ", 1, 5
             )
         if user_input == 1:
             search('first_name')
@@ -323,8 +324,10 @@ def search_contacts():
             search('last_name')
         elif user_input == 3:
             search('category')
-        else:
+        elif user_input == 4:
             search('phone_number')
+        else:
+            another_task()
         return False
 
 
@@ -354,7 +357,7 @@ Type NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('*First Name: ').capitalize()
     last_name = pyip.inputStr('*Last Name: ').capitalize()
     phone_number = pyip.inputInt('*Phone Number: ', min=11)
-    email_address = pyip.inputEmail('*Email Address: ')
+    email_address = pyip.inputEmail('Email Address: ', allowRegexes='NA')
     address = pyip.inputStr('Address: ')
     user_input = user_response('*Choose category: 1.Friends, \
 2.Favourites, 3.Family or 4.General: ', 1, 4)
@@ -423,9 +426,9 @@ def edit_existing_contact(contact):
     print(contact)
     print('\nWhich value would you like to change?\n \
 1.First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
-5.Address\n 6.category\n')
+5.Address\n 6.category\n7.Exit')
     user_input = user_response(
-        "\nPlease enter a number from the above options: ", 1, 6
+        "\nPlease enter a number from the above options: ", 1, 7
         )
     if user_input == 1:
         edit(contact, 0, 'first name')
@@ -463,6 +466,8 @@ def edit_existing_contact(contact):
         update_worksheet(cell.row, cell.col, new_value)
         print(contact)
         another_task()
+    else:
+        another_task()
 
 
 def run_programme():
@@ -476,12 +481,4 @@ def run_programme():
     print('\nInstructions:\n \
 - When presented with a number menu you need to type the relevant \
 \n number and press enter. This will take you to your desired choice.\n\
-- If presented with a Y or N choice, \n please type Y or \
-N in to the input field and press enter.')
-    print('\nNow taking you to the main menu...\n' + style.RESET)
-    main_menu_selection()
-
-
-# search_contacts()
-run_programme()
-# add_new_contact()
+- If presented with a Y or N choice, \
