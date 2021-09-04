@@ -12,9 +12,9 @@ To begin planning this project I started first with UX, designing the logic of t
 User Stories:
 - As a user, I want to be able to easily access all of my contacts at once.
 - As a user, I want to be able to retrieve a contact's information based upon their name.
+- As a user, I want to add new contact information.
 - As a user, I want to update an existing contact's information if there has been a change.
 - As a user, I want to be able to download contact information by group (family/friends).
-- As a user, I want to add new contact information.
 - As a user, I want to be able to delete a contact entry.
 
 ### Structure
@@ -24,6 +24,36 @@ As you can see from the flowchart above the logic has been based around the four
 
 ---
 ## Features
+The features included in this programme are listed in the main menu and they can be seen below:
+
+![](assets/images/main_menu.png)
+
+Retrieve all contacts:
+- From the main menu there is an option to Retrieve All Contacts, once the user has selected this all of the contacts will be printed to the terminal.
+
+Search contacts:
+- From the main menu there is an option to Search Contacts, once the user has selected this they are taken to another menu where they can choose what they would like to search by. 
+    - First name
+    - Last name
+    - Category
+    - Phone number
+- Once the user has selected the field to search by & input the name/number/catergory, if there is a match this will be printed to the terminal.
+
+Add new contact:
+- From the main menu there is an option to Add New Contact.
+- Once the user has selected this option they are then asked to input a value for: First Name, Last Name, Phone Number, Email, Address, Category. 
+- Both names, phone number and category are required entries, the user can input NA for those not required.
+- Once all fields have been entered the contact is saved.
+- The contact details are printed the terminal and the user is asked if they want to edit the information.
+- If they do they will be taken to edit the contact, otherwise they can go back to the main menu.
+
+Edit existing contact:
+- From the main menu there is an option to Edit Existing Contact, once the user has selected this they will first be taken to search for the contact they would like edit.
+- After the contact has been found they will have the option to edit by typing Y/N
+- If they select Y they will then be able to choose which field of the contacts they would like to edit. 
+- They input the new information and save.
+- The worksheet is updated with the new contact information.
+
 ---
 ## Technologies Useds
 
@@ -58,26 +88,29 @@ I have used several technologies that have enabled this design to work:
 ## Testing
 
 ### User Stories
-User Stories:
-- As a user, I want to be able to easily access all of my contacts at once.
-
+'As a user, I want to be able to easily access all of my contacts at once.'
+This is one of the choices from the main menu, if the user selects option 1 all of their contacts are printed to the terminal.
 ![](assets/images/retrieve_contacts.png)
 
-- As a user, I want to be able to retrieve a contact's information based upon their name or number.
+'As a user, I want to be able to retrieve a contact's information based upon their name or number.'
+This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/number/category. If there is a match found it is printed to the terminal. 
 
-![](assets/images/contact_search_image.png)
+- As a user, I want to add new contact information.
+This is one of the choices from the main menu, if the user selects option 3, they are taken to add a new contact. The user is asked to input a value for: First Name, Last Name, Phone Number, Email, Address, Category. 
+![](assets/images/add_contact.png)
 
-- As a user, I want to update an existing contact's information if there has been a change.
-
+'As a user, I want to update an existing contact's information if there has been a change.'
+This is one of the choices from the main menu, if the user selects option 4, they are taken to search their contacts by either name/number/category. If there is a match found it is printed to the terminal. 
 ![](assets/images/edit_contact.png)
 ![](assets/images/edit_contact_saved.png)
 
-- As a user, I want to be able to download contact information by group (family/friends).
-
+'As a user, I want to be able to download contact information by group (family/friends).'
+- This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/number/category. After the user chooses to search by category they will be asked which category to search by 1.Friends, 2.Favourites, 3.Family or 4.General. 
+- All contacts with the relevant category will be printed to the terminal.
 ![](assets/images/category_search.png)
 
-- As a user, I want to be able to delete a contact entry.
-
+'As a user, I want to be able to delete a contact entry.'
+- After searching for a contact the user will be given the option to delete it, if they choose this option the contact is deleted from the worksheet.
 ![](assets/images/delete.png)
 ---
 ## Deployment
