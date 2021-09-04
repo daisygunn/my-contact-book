@@ -119,7 +119,8 @@ def print_records_in_loop(record):
     """
     Function to loop through all records passed
     as a parameter and print the details in a
-    list of key: values.
+    list of key: values. Also return a list of just
+    the value items to be used when editing a contact.
     """
     print("Printing record...")
     global contact_info
@@ -171,10 +172,9 @@ def save_to_worksheet(info):
 # Get new contact_ID
 def contact_id_creation():
     """
-    Function called to generate
-    a new contact ID, based upon
-    the previous entry. Needed when
-    adding new contact information.
+    Function called to generate a new contact ID,
+    based upon the previous entry in the worksheet.
+    Needed when adding new contact information.
     """
     all_values = CONTACTS_WORKSHEET.get_all_values()
     previous_row = all_values[-1]
@@ -186,6 +186,9 @@ def contact_id_creation():
 def convert_to_list_action(option, action):
     """
     Function to convert contact dictionary to list
+    so that it can be properly indexed when editing
+    or deleting the contact information; necessary if
+    multiple contacts have been returned from a search.
     """
     values = option.values()
     values_list = list(values)
@@ -198,13 +201,17 @@ def convert_to_list_action(option, action):
 
 
 def select_from_multiple_records(contacts):
+    """
+    Function to choose a single record from a list
+    of records that have been returned.
+    """
     def print_record(record):
         for key, value in record.items():
             print(f"{key}: {value}")
 
     def print_records_as_options(records, function=None):
         """
-        Function to print a single contact.
+        Function to print a single contact with an record number.
         To be used in the contact search functions.
         """
         for idx, record in enumerate(records):
@@ -236,7 +243,6 @@ def search(info_type):
             "Contact found" + style.RESET
             )
         print_records(result)
-        global contact_info
         print('1. Edit contact(s)\n 2. Delete contact(s)\n \
 3. Back to main menu\n')
         user_input = user_response(
@@ -332,12 +338,18 @@ Type NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('*First Name: ').capitalize()
     last_name = pyip.inputStr('*Last Name: ').capitalize()
     phone_number = pyip.inputInt('*Phone Number: ', min=11)
-    email_address = pyip.inputEmail('Email Address: ')
+    email_address = pyip.inputEmail('*Email Address: ')
     address = pyip.inputStr('Address: ')
-    group = pyip.inputChoice(
-        ['Family', 'Favourites', 'General', 'Friends'],
-        '*Choose category: Friends, Favourites, Family or General\n'
-        )
+    user_input = user_response('*Choose category: 1.Friends, \
+2.Favourites, 3.Family or 4.General: ', 1, 4)
+    if user_input == 1:
+        group = 'Friends'
+    elif user_input == 2:
+        group = 'Favourites'
+    elif user_input == 3:
+        group = 'Family'
+    else:
+        group = 'General'
     contact_id = contact_id_creation()
     new_contact_info = [
         first_name, last_name, phone_number,
@@ -420,9 +432,16 @@ def edit_existing_contact(contact):
         another_task()
     elif user_input == 6:
         cell = CONTACTS_WORKSHEET.find(contact[5])
-        new_value = pyip.inputChoice(
-            ['Family', 'Favourites', 'General', 'Friends']
-            )
+        user_input = user_response('*Choose category: 1.Friends, \
+2.Favourites, 3.Family or 4.General: ', 1, 4)
+        if user_input == 1:
+            new_value = 'Friends'
+        elif user_input == 2:
+            new_value = 'Favourites'
+        elif user_input == 3:
+            new_value = 'Family'
+        else:
+            new_value = 'General'
         contact[5] = new_value
         print('\nGroup now being updated...\n')
         update_worksheet(cell.row, cell.col, new_value)
