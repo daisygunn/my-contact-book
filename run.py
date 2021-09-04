@@ -251,8 +251,8 @@ def search(info_type):
         """
         If there is more than one contact returned
         the user needs to be able to choose which
-        contact to edit or delete. If statement below
-        checks how many 'results' there are.
+        contact to edit or delete which is done using the
+        select_from_multiple_records function.
         """
         if user_input == 1:
             # Edit
@@ -286,21 +286,39 @@ more specific.\n')
 def search_contacts():
     """
     Allows user to search for specific contact(s),
-    either by first name, last name or phone number.
+    either by first name, last name, phone number or category.
     Function will then print all matches if they are found.
     """
     print("\nHow would you like to search?\n\
-\n1. By first name\n\
+1. By first name\n\
 2. By last name\n\
-3. By phone number\n")
+3. By category\n\
+4. By phone number\n")
     while True:
         user_input = user_response(
-            "\nPlease enter a number from the above options: ", 1, 3
+            "\nPlease enter a number from the above options: ", 1, 4
             )
         if user_input == 1:
             search('first_name')
         elif user_input == 2:
             search('last_name')
+        elif user_input == 3:
+            user_input = user_response('*Choose category to search by: 1.Friends, \
+2.Favourites, 3.Family or 4.General: ', 1, 4)
+            if user_input == 1:
+                category = 'Friends'
+            elif user_input == 2:
+                category = 'Favourites'
+            elif user_input == 3:
+                category = 'Family'
+            else:
+                category = 'General'
+            result = filter(
+                lambda record: record['category'] == category,
+                retrieve_records()
+                )
+            print_records(result)
+            break
         else:
             phone_number = str(pyip.inputInt('*\nEnter phone number here:\n'))
             result = filter(
@@ -343,17 +361,17 @@ Type NA for any fields you wish to leave blank.\n')
     user_input = user_response('*Choose category: 1.Friends, \
 2.Favourites, 3.Family or 4.General: ', 1, 4)
     if user_input == 1:
-        group = 'Friends'
+        category = 'Friends'
     elif user_input == 2:
-        group = 'Favourites'
+        category = 'Favourites'
     elif user_input == 3:
-        group = 'Family'
+        category = 'Family'
     else:
-        group = 'General'
+        category = 'General'
     contact_id = contact_id_creation()
     new_contact_info = [
         first_name, last_name, phone_number,
-        email_address, address, group, contact_id
+        email_address, address, category, contact_id
         ]
     print(new_contact_info)
     save_to_worksheet(new_contact_info)
@@ -407,7 +425,7 @@ def edit_existing_contact(contact):
     print(contact)
     print('\nWhich value would you like to change?\n \
 1.First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
-5.Address\n 6.Group\n')
+5.Address\n 6.category\n')
     user_input = user_response(
         "\nPlease enter a number from the above options: ", 1, 6
         )
@@ -443,7 +461,7 @@ def edit_existing_contact(contact):
         else:
             new_value = 'General'
         contact[5] = new_value
-        print('\nGroup now being updated...\n')
+        print('\ncategory now being updated...\n')
         update_worksheet(cell.row, cell.col, new_value)
         print(contact)
         another_task()
