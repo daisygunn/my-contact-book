@@ -14,6 +14,7 @@ User Stories:
 - As a user, I want to be able to retrieve a contact's information based upon their name.
 - As a user, I want to update an existing contact's information if there has been a change.
 - As a user, I want to be able to download contact information by group (family/friends).
+- As a user, I want to add new contact information.
 - As a user, I want to be able to delete a contact entry.
 
 ### Structure
@@ -59,7 +60,8 @@ I have used several technologies that have enabled this design to work:
 ### User Stories
 User Stories:
 - As a user, I want to be able to easily access all of my contacts at once.
-- As a user, I want to be able to retrieve a contact's information based upon their name.
+![](assets/)
+- As a user, I want to be able to retrieve a contact's information based upon their name or number.
 - As a user, I want to update an existing contact's information if there has been a change.
 - As a user, I want to be able to download contact information by group (family/friends).
 - As a user, I want to be able to delete a contact entry.
