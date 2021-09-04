@@ -39,7 +39,7 @@ def main_menu_selection():
 3.Add new contact\n4.Edit existing contact\n")
     while True:
         user_input = user_response(
-            "Please enter a number from the above options: ", 1, 4
+            "\nPlease enter a number from the above options: ", 1, 4
             )
         if user_input == 1:
             retrieve_all_contacts()
@@ -71,7 +71,7 @@ def another_task():
 2. No, end programme")
     while True:
         user_input = user_response(
-            "Please enter a number from the above options: ", 1, 2
+            "\nPlease enter a number from the above options: ", 1, 2
             )
         if user_input == 1:
             print("\nNow taking you back to the main menu...\n")
@@ -203,7 +203,7 @@ def convert_to_list_action(option, action):
 def select_from_multiple_records(contacts):
     """
     Function to choose a single record from a list
-    of records that have been returned.
+    of records that have been returned
     """
     def print_record(record):
         for key, value in record.items():
@@ -218,10 +218,10 @@ def select_from_multiple_records(contacts):
             print(f"\nRecord: {idx}\n")
             print_record(record)
 
-    print('List of record')
+    print('\nList of contacts to choose from: ')
     print_records_as_options(contacts, print_record)
     user_input = pyip.inputInt(
-        'Enter the record number of the contact you would like to action: ',
+        '\nEnter the record number of the contact you would like to action: ',
         min=1, max=len(contacts))
     return contacts[user_input]
 
@@ -246,7 +246,7 @@ def search(info_type):
         print('1. Edit contact(s)\n 2. Delete contact(s)\n \
 3. Back to main menu\n')
         user_input = user_response(
-            "Please enter a number from the above options: ", 1, 3
+            "\nPlease enter a number from the above options: ", 1, 3
             )
         """
         If there is more than one contact returned
@@ -295,7 +295,7 @@ def retrieve_one_contact():
 3. By phone number\n")
     while True:
         user_input = user_response(
-            "Please enter a number from the above options: ", 1, 3
+            "\nPlease enter a number from the above options: ", 1, 3
             )
         if user_input == 1:
             search('first_name')
@@ -409,7 +409,7 @@ def edit_existing_contact(contact):
 1.First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
 5.Address\n 6.Group\n')
     user_input = user_response(
-        "Please enter a number from the above options: ", 1, 6
+        "\nPlease enter a number from the above options: ", 1, 6
         )
     if user_input == 1:
         edit(contact, 0, 'first name')
