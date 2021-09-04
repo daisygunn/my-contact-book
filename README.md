@@ -35,7 +35,7 @@ I have used several technologies that have enabled this design to work:
             - Used to access my google sheets document throughout the application, to access and edit data.
         - [Google Auth](https://google-auth.readthedocs.io/en/master/)
             - Used to provide access to the application to interact with my google sheet.
-        - [Pyip](https://pyinputplus.readthedocs.io/en/latest/)
+        - [pyinputplus](https://pyinputplus.readthedocs.io/en/latest/)
             - Used to validate all of the user inputs.
         - [Colored](https://pypi.org/project/colored/)
         - Used to add colours to the printed terminal messages
@@ -55,6 +55,14 @@ I have used several technologies that have enabled this design to work:
     - Used to store the 'Contacts' data used for the application.
 ---
 ## Testing
+
+### User Stories
+User Stories:
+- As a user, I want to be able to easily access all of my contacts at once.
+- As a user, I want to be able to retrieve a contact's information based upon their name.
+- As a user, I want to update an existing contact's information if there has been a change.
+- As a user, I want to be able to download contact information by group (family/friends).
+- As a user, I want to be able to delete a contact entry.
 ---
 ## Deployment
 
@@ -99,7 +107,6 @@ I followed the below steps using the Code Institute tutorial:
 
 - The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being commited.
 
-
 1. Go to [Heroku.com](https://dashboard.heroku.com/apps) and login; if you do not already have an account then you will need to create one.
 2. Click the `New` dropdown and select `Create New App`.
 3. Enter a name for your new project, all Heroku apps need to have a unique name, you will be prompted if you need to change it.
@@ -123,8 +130,13 @@ In the Deploy tab:
 3. Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built and you should see the below `View` button, click this to open your application:
 
 ![](assets/images/heroku_deployed_image.png)
+
 ---
 ## Credits
+
+All of this code has been written by me, however I have used [Stack Overflow](https://stackoverflow.com/) and the relevant module documentation for pyinputpls and Gspread to help me debug my code and fix any issues that I had.
+
+[Address/Contact generator](https://www.fakeaddressgenerator.com/World/uk_address_generator) - used to generate some of the contacts in my worksheet.
 
 ---
 ## Acknowledgements

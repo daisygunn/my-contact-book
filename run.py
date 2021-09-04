@@ -357,7 +357,7 @@ Type NA for any fields you wish to leave blank.\n')
     first_name = pyip.inputStr('*First Name: ').capitalize()
     last_name = pyip.inputStr('*Last Name: ').capitalize()
     phone_number = pyip.inputInt('*Phone Number: ', min=11)
-    email_address = pyip.inputEmail('Email Address: ', allowRegexes='NA')
+    email_address = pyip.inputEmail('*Email Address: ', allowRegexes='NA')
     address = pyip.inputStr('Address: ')
     user_input = user_response('*Choose category: 1.Friends, \
 2.Favourites, 3.Family or 4.General: ', 1, 4)
@@ -481,4 +481,10 @@ def run_programme():
     print('\nInstructions:\n \
 - When presented with a number menu you need to type the relevant \
 \n number and press enter. This will take you to your desired choice.\n\
-- If presented with a Y or N choice, \
+- If presented with a Y or N choice, \n please type Y or \
+N in to the input field and press enter.')
+    print('\nNow taking you to the main menu...\n' + style.RESET)
+    main_menu_selection()
+
+
+run_programme()
