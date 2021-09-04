@@ -45,7 +45,7 @@ def main_menu_selection():
             retrieve_all_contacts()
             break
         elif user_input == 2:
-            retrieve_one_contact()
+            search_contacts()
             break
         elif user_input == 3:
             add_new_contact()
@@ -264,7 +264,7 @@ def search(info_type):
             else:
                 print('\nToo many contacts returned, please search by something\
 more specific.\n')
-                retrieve_one_contact()
+                search_contacts()
         # Delete
         elif user_input == 2:
             if len(result) == 1:
@@ -279,13 +279,13 @@ more specific.\n')
             fore.WHITE + back.RED + style.BLINK +
             "\nNo contact with that name found\n" + style.RESET)
         print('\nYou will now be taken back to search again...\n')
-        retrieve_one_contact()
+        search_contacts()
 
 
 # Retrieve one contact
-def retrieve_one_contact():
+def search_contacts():
     """
-    Allows user to search for specific contact,
+    Allows user to search for specific contact(s),
     either by first name, last name or phone number.
     Function will then print all matches if they are found.
     """
@@ -324,7 +324,7 @@ def edit_contact_from_menu():
 you will first need to search for them.\n'
         )
     print('\nTaking you to search now...\n')
-    retrieve_one_contact()
+    search_contacts()
 
 
 # Add new contact
@@ -466,6 +466,6 @@ N in to the input field and press enter.')
     main_menu_selection()
 
 
-# retrieve_one_contact()
+# search_contacts()
 run_programme()
 # add_new_contact()
