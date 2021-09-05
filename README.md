@@ -5,10 +5,10 @@
 
 [Live application can be found here](https://my-contact-book-dgunn.herokuapp.com/)
 
-This is a command-line-interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete exisiting contacts & add new contact information. This project has been designed for educational purposes and uses the Code Insitutues mock terminal to run.
+This is a command-line interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete existing contacts & add new contact information. This project has been designed for educational purposes and uses the Code Insitutues mock terminal to run.
 
 ## UX
-To begin planning this project I started first with UX, designing the logic of the programme based upon the user stories. As this is a command-line application there is no design featured as HTML & CSS have not been used; however I made the decision to use the Colored module so that I could add colour to some of the statements printed to the terminal. I chose to do this to provide visual ques for some of the messages, for example a green background for a *Save Complete* message.
+To begin planning this project I started first with UX, designing the logic of the programme based upon the user stories. As this is a command-line application there is no design featured as HTML & CSS have not been used; however, I made the decision to use the Colored module so that I could add colour to some of the statements printed to the terminal. I chose to do this to provide visual cues for some of the messages, for example, a green background for a *Save Complete* message.
 
 ### Strategy
 User Stories:
@@ -39,25 +39,25 @@ The features included in this programme are listed in the main menu and they can
     - Last name
     - Category
     - Phone number
-- Once the user has selected the field to search by & input the name/number/catergory, if there is a match this will be printed to the terminal.
+- Once the user has selected the field to search by & input the name/number/category, if there is a match this will be printed to the terminal.
 
 ### Add new contact:
 - From the main menu there is an option to Add New Contact.
 - Once the user has selected this option they are then asked to input a value for: First Name, Last Name, Phone Number, Email, Address, Category. 
 - Both names, phone number and category are required entries, the user can input NA for those not required.
 - Once all fields have been entered the contact is saved.
-- The contact details are printed the terminal and the user is asked if they want to edit the information.
+- The contact details are printed to the terminal and the user is asked if they want to edit the information.
 - If they do they will be taken to edit the contact, otherwise they can go back to the main menu.
 
 ### Edit existing contact:
-- From the main menu there is an option to Edit Existing Contact, once the user has selected this they will first be taken to search for the contact they would like edit.
+- From the main menu there is an option to Edit Existing Contact, once the user has selected this they will first be taken to search for the contact they would like to edit.
 - After the contact has been found they will have the option to edit by typing Y/N
 - If they select Y they will then be able to choose which field of the contacts they would like to edit. 
-- They input the new information and save.
+- They input the new information and save it.
 - The worksheet is updated with the new contact information.
 
 ---
-## Technologies Useds
+## Technologies Used
 
 I have used several technologies that have enabled this design to work:
 
@@ -112,7 +112,7 @@ This is one of the choices from the main menu, if the user selects option 4, the
 ![](assets/images/edit_contact_saved.png)
 
 *'As a user, I want to be able to download contact information by group (family/friends).'*    
-This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/number/category. After the user chooses to search by category they will be asked which category to search by 1.Friends, 2.Favourites, 3.Family or 4.General. All contacts with the relevant category will be printed to the terminal.
+This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/number/category. After the user chooses to search by category they will be asked which category to search by 1. Friends, 2. Favourites, 3. Family or 4. General. All contacts with the relevant category will be printed to the terminal.
 
 ![](assets/images/category_search.png)
 
@@ -129,7 +129,7 @@ I chose to use the `pyinputplus` module as this offers built in validation. The 
     input = pyip.inputInt(prompt=message, min=min_value, max=max_value)  
     return input`    
 
-I added the minimum and maximum value parameters ensured that the user is only able to enter the numbers present in the menu, if they do not then the following error message is displayed:  
+I added the minimum and maximum value parameters to ensure that the user is only able to enter the numbers present in the menu, if they do not then the following error message is displayed:  
 
 ![](assets/images/invalid_entry1.png)
 
@@ -143,7 +143,7 @@ Whilst testing the programme my initial code to validate the phone number entry 
 
 ![](assets/images/phone_number_error.png)
 
-For this reason I added an additional function to validate these entries (called validate_phone_number) as it gave me total autononmy with the input and only allows users to input numbers with 10 digits - the 0 at the beginning of the number is not counted. If the number entered does not pass the validation an error message is thrown:
+For this reason, I added an additional function to validate these entries (called validate_phone_number) as it gave me total autonomy with the input and only allows users to input numbers with 10 digits - the 0 at the beginning of the number is not counted. If the number entered does not pass the validation an error message is thrown:
 
 ![](assets/images/phone_number_validated.png)
 
@@ -158,17 +158,17 @@ The master branch of this repository has been used for the deployed version of t
 
 ### Using Github & Gitpod
 
-In order to deploy my commnand-line-interface application I had to use the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template), as this enables the application to be properly viewed on Heroku using a mock terminal. 
+To deploy my command-line interface application, I had to use the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template), as this enables the application to be properly viewed on Heroku using a mock terminal. 
 
 - Click the `Use This Template` button.
 - Add a repository name and brief description.
 - Click the `Create Repository from Template` to create your repository.
-- To create a gitpod workspace you then need to click `Gitpod`, this can take a few minutes.
+- To create a Gitpod workspace you then need to click `Gitpod`, this can take a few minutes.
 - When you want to work on the project it is best to open the workspace from Gitpod (rather than Github) as this will open your previous workspace rather than creating a new one. You should pin the workspace so that it isn't deleted.
--  Commiting your work should be done often and should have clear/explanatory messages, use the following commands to make your commits:
+-  Committing your work should be done often and should have clear/explanatory messages, use the following commands to make your commits:
     - `git add .`: adds all modified files to a staging area
     - `git commit -m "A message explaining your commit"`: commits all changes to a local repository.
-    - `git push`: pushes all your commited changes to your Github repository.
+    - `git push`: pushes all your committed changes to your Github repository.
 
 *Forking the GitHub Repository*
 
@@ -193,7 +193,7 @@ Cloning your repository will allow you to download a local version of the reposi
 
 I followed the below steps using the Code Institute tutorial:
 
-- The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being commited.
+- The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being committed.
 
 1. Go to [Heroku.com](https://dashboard.heroku.com/apps) and login; if you do not already have an account then you will need to create one.
 2. Click the `New` dropdown and select `Create New App`.
@@ -201,20 +201,20 @@ I followed the below steps using the Code Institute tutorial:
 4. Select the region you are working in.
 
 *Heroku Settings*
-You will need to set your Enviroment Variables - this is a key step to ensuring your application is deployed properly.
+You will need to set your Environment Variables - this is a key step to ensuring your application is deployed properly.
 - In the Settings tab, click on `Reveal Config Vars` and set the following variables:
-    - If using credentials you will need to add the credentials as a variable, the key is the name 'CREDS' and the value is the contents of your creds json
+    - If using credentials you will need to add the credentials as a variable, the key is the name 'CREDS' and the value is the contents of your creds JSON
     - Add key: `PORT` & value `8000`
 - Buildpacks are also required for proper deployment, simply click `Add buildpack` and search for the ones that you require.
-    - For this project I needed to add `Python` and `Node.js`, in this order.
+    - For this project, I needed to add `Python` and `Node.js`, in this order.
 
 *Heroku Deployment*
 In the Deploy tab:
 1. Connect your Heroku account to your Github Repository following these steps:
-    1. Click on `Deploy` tab and choose `Github-Connect to Github`.
+    1. Click on the `Deploy` tab and choose `Github-Connect to Github`.
     2. Enter the GitHub repository name and click on `Search`.
-    3. Choose the correct repository for your application adn click on `Connect`.
-2. You can then choose to deploy the project manually or automatically, automatic deployment will generate a new application everytime you push a change to Github, whereas manual deployment requires you to push the `Deploy Branch` button whenever you want a change made.
+    3. Choose the correct repository for your application and click on `Connect`.
+2. You can then choose to deploy the project manually or automatically, automatic deployment will generate a new application every time you push a change to Github, whereas manual deployment requires you to push the `Deploy Branch` button whenever you want a change made.
 3. Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built and you should see the below `View` button, click this to open your application:
 
 ![](assets/images/heroku_deployed_image.png)
@@ -222,7 +222,7 @@ In the Deploy tab:
 ---
 ## Credits
 
-All of this code has been written by me, however I have used [Stack Overflow](https://stackoverflow.com/) and the relevant module documentation for `pyinputplus` and `Gspread` to help me debug my code and fix any issues that I had.
+All of this code has been written by me, however, I have used [Stack Overflow](https://stackoverflow.com/) and the relevant module documentation for `pyinputplus` and `Gspread` to help me debug my code and fix any issues that I had.
 
 [Address/Contact generator](https://www.fakeaddressgenerator.com/World/uk_address_generator) - used to generate some of the contacts in my worksheet.
 

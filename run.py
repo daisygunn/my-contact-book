@@ -333,7 +333,7 @@ you will first need to search for them.\n'
 def validate_phone_number():
     """
     Function to validate phone number entries,
-    enusring they are 10 digits only
+    ensuring they are 10 digits only
     (the 0 at the beginning is not counted)
     """
     while True:
