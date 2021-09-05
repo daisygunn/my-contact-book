@@ -28,10 +28,10 @@ The features included in this programme are listed in the main menu and they can
 
 ![](assets/images/main_menu.png)
 
-Retrieve all contacts:
+### Retrieve all contacts:
 - From the main menu there is an option to Retrieve All Contacts, once the user has selected this all of the contacts will be printed to the terminal.
 
-Search contacts:
+### Search contacts:
 - From the main menu there is an option to Search Contacts, once the user has selected this they are taken to another menu where they can choose what they would like to search by. 
     - First name
     - Last name
@@ -39,7 +39,7 @@ Search contacts:
     - Phone number
 - Once the user has selected the field to search by & input the name/number/catergory, if there is a match this will be printed to the terminal.
 
-Add new contact:
+### Add new contact:
 - From the main menu there is an option to Add New Contact.
 - Once the user has selected this option they are then asked to input a value for: First Name, Last Name, Phone Number, Email, Address, Category. 
 - Both names, phone number and category are required entries, the user can input NA for those not required.
@@ -47,7 +47,7 @@ Add new contact:
 - The contact details are printed the terminal and the user is asked if they want to edit the information.
 - If they do they will be taken to edit the contact, otherwise they can go back to the main menu.
 
-Edit existing contact:
+### Edit existing contact:
 - From the main menu there is an option to Edit Existing Contact, once the user has selected this they will first be taken to search for the contact they would like edit.
 - After the contact has been found they will have the option to edit by typing Y/N
 - If they select Y they will then be able to choose which field of the contacts they would like to edit. 
@@ -118,6 +118,36 @@ This is one of the choices from the main menu, if the user selects option 2, the
 After searching for a contact the user will be given the option to delete it, if they choose this option the contact is deleted from the worksheet.
 
 ![](assets/images/delete.png)
+
+### Input Validation
+
+As this programme relies heavily on users inputting information, validating these values is of the utmost importance at every step to ensure the information is viable.
+I chose to use the `pyinputplus` module as this offers built in validation. The main use of this is when the users are presented with a numbered menu, they then must input their choice, I used the following function:  
+`def user_response(message, min_value, max_value):    
+    input = pyip.inputInt(prompt=message, min=min_value, max=max_value)  
+    return input`    
+
+I added the minimum and maximum value parameters ensured that the user is only able to enter the numbers present in the menu, if they do not then the following error message is displayed:  
+
+![](assets/images/invalid_entry1.png)
+
+pyinputplus also has methods for email & string inputs, which you can see being used below:
+
+![](assets/images/input_validation_code.png)
+
+I used the allowRegexes parameter for the email input as I wanted the users to be able to skip over this if they wanted to by typing NA.
+
+Whilst testing the programme my initial code to validate the phone number entry didn't work as users were able to input numbers that were only 3 digits:
+
+![](assets/images/phone_number_error.png)
+
+For this reason I added an additional function to validate these entries (called validate_phone_number) as it gave me total autononmy with the input and only allows users to input numbers with 10 digits - the 0 at the beginning of the number is not counted. If the number entered does not pass the validation an error message is thrown:
+
+![](assets/images/phone_number_validated.png)
+
+In addition to my own testing of the programme I passed my code through the [Pep8](http://pep8online.com/checkresult) online validator which passed through with 0 issues:
+
+![](assets/images/pep8_validation.png)
 
 ---
 ## Deployment

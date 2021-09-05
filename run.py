@@ -211,9 +211,9 @@ def select_from_multiple_records(contacts):
 
     print('\nList of contacts to choose from: ')
     print_records_as_options(contacts, print_record)
-    user_input = pyip.inputInt(
+    user_input = user_response(
         '\nEnter the record number of the contact you would like to action: ',
-        min=1, max=len(contacts))
+        1, len(contacts))
     return contacts[user_input]
 
 
