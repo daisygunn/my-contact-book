@@ -33,8 +33,8 @@ def main_menu_selection():
     valid input.
     """
     print(
-        "\n1. Retrieve all contacts\n2. Search contacts\n\
-3. Add new contact\n4. Edit existing contact\n")
+        "\n 1. Retrieve all contacts\n 2. Search contacts\n\
+ 3. Add new contact\n 4. Edit existing contact\n")
     while True:
         user_input = user_response(
             "\nPlease enter a number from the above options: ", 1, 4
@@ -339,9 +339,9 @@ def validate_phone_number():
     while True:
         phone_number = str(pyip.inputInt('*Phone Number: '))
         if len(phone_number) < 10 or len(phone_number) > 10:
-            print(len(phone_number))
-            print("Phone number must be 11 digits long. \
-Please note only UK numbers allowed.")
+            print(f"Phone number must be 11 digits long.\
+You entered {len(phone_number)} digits.\n \
+Please note only UK numbers allowed, starting with 0.")
         else:
             return phone_number
 
