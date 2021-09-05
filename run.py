@@ -16,7 +16,6 @@ SHEET = GSPREAD_CLIENT.open('Contacts sheet')
 CONTACTS_WORKSHEET = SHEET.worksheet('contact_list')
 
 
-# Function to validate user response based upon number selection
 def user_response(message, min_value, max_value):
     """
     Function used throughout programme
@@ -26,7 +25,6 @@ def user_response(message, min_value, max_value):
     return input
 
 
-# Main menu selection
 def main_menu_selection():
     """
     User selects which task they would like to do
@@ -56,8 +54,6 @@ def main_menu_selection():
         return False
 
 
-# Function for user to choose if they want to complete another task
-# or shut the programme down
 def another_task():
     """
     Function to take users back to the
@@ -92,14 +88,12 @@ def retrieve_records():
     return CONTACTS_WORKSHEET.get_all_records()
 
 
-# Retrieve all contacts
 def retrieve_all_contacts():
     """
     Function to retrieve full list of contacts
     """
     all_contacts = retrieve_records()
     print("\nNow retrieving all of your contacts...\n")
-    # print(all_contacts)
     for contact in all_contacts:
         print_records_in_loop(contact)
     another_task()
@@ -119,7 +113,7 @@ def print_records_in_loop(record):
     """
     Function to loop through all records passed
     as a parameter and print the details in a
-    list of key: values. Also return a list of just
+    list of key: values. Also returns a list of just
     the value items to be used when editing a contact.
     """
     print("Printing record...")
@@ -132,7 +126,6 @@ def print_records_in_loop(record):
     return contact_info
 
 
-# Update worksheet
 def update_worksheet(row, col, value):
     """
     Function used when editing a contact
@@ -146,7 +139,6 @@ def update_worksheet(row, col, value):
             )
 
 
-# Save
 def save_to_worksheet(info):
     """
     Function used when saving a contact
@@ -169,7 +161,6 @@ def save_to_worksheet(info):
         another_task()
 
 
-# Get new contact_ID
 def contact_id_creation():
     """
     Function called to generate a new contact ID,
@@ -226,7 +217,6 @@ def select_from_multiple_records(contacts):
     return contacts[user_input]
 
 
-# Search
 def search(info_type):
     """
     Function that returns result based upon
@@ -279,10 +269,6 @@ def search(info_type):
             elif len(result) > 1:
                 contact_choice = select_from_multiple_records(result)
                 convert_to_list_action(contact_choice, 'edit')
-            else:
-                print('\nToo many contacts returned, please search by something\
-more specific.\n')
-                search_contacts()
         # Delete
         elif user_input == 2:
             if len(result) == 1:
@@ -301,7 +287,6 @@ more specific.\n')
         search_contacts()
 
 
-# Retrieve one contact
 def search_contacts():
     """
     Allows user to search for specific contact(s),
@@ -313,7 +298,7 @@ def search_contacts():
 2. By last name\n\
 3. By category\n\
 4. By phone number\n\
-5. Exit")
+5. Exit\n")
     while True:
         user_input = user_response(
             "\nPlease enter a number from the above options: ", 1, 5
@@ -331,7 +316,6 @@ def search_contacts():
         return False
 
 
-# Edit from main menu
 def edit_contact_from_menu():
     """
     Function to edit contact from the
@@ -362,7 +346,6 @@ Please note only UK numbers allowed.")
             return phone_number
 
 
-# Add new contact
 def add_new_contact():
     """
     Allows user to add new contact information
@@ -400,6 +383,7 @@ def edit(contact, cell_index, info_type):
     being edited, allows user to update cell by
     adding a new entry.
     """
+    # Converts to a string first to allow any integers to be searched for.
     cell = CONTACTS_WORKSHEET.find(str(contact[cell_index]))
     if cell_index == 2:
         new_value = validate_phone_number()
@@ -432,7 +416,6 @@ def delete(contact, index):
         another_task()
 
 
-# Edit existing contact
 def edit_existing_contact(contact):
     """
     Allows user to edit existing contact,
@@ -442,7 +425,7 @@ def edit_existing_contact(contact):
     print(contact)
     print('\nWhich value would you like to change?\n \
 1.First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
-5.Address\n 6.category\n7.Exit')
+5.Address\n 6.category\n 7.Exit')
     user_input = user_response(
         "\nPlease enter a number from the above options: ", 1, 7
         )
@@ -478,7 +461,7 @@ def edit_existing_contact(contact):
         else:
             new_value = 'General'
         contact[5] = new_value
-        print('\ncategory now being updated...\n')
+        print('\nCategory now being updated...\n')
         update_worksheet(cell.row, cell.col, new_value)
         print(contact)
         another_task()
