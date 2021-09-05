@@ -1,6 +1,8 @@
 # My Contact Book
 ---
 
+![](assets/images/responsive.png)
+
 [Live application can be found here](https://my-contact-book-dgunn.herokuapp.com/)
 
 This is a command-line-interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete exisiting contacts & add new contact information. This project has been designed for educational purposes and uses the Code Insitutues mock terminal to run.
@@ -220,13 +222,13 @@ In the Deploy tab:
 ---
 ## Credits
 
-All of this code has been written by me, however I have used [Stack Overflow](https://stackoverflow.com/) and the relevant module documentation for pyinputpls and Gspread to help me debug my code and fix any issues that I had.
+All of this code has been written by me, however I have used [Stack Overflow](https://stackoverflow.com/) and the relevant module documentation for `pyinputplus` and `Gspread` to help me debug my code and fix any issues that I had.
 
 [Address/Contact generator](https://www.fakeaddressgenerator.com/World/uk_address_generator) - used to generate some of the contacts in my worksheet.
 
 ---
 ## Acknowledgements
 
-I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my fellow students Harry Dhillon and Jack Crosbie for their support & feedback.
+I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my fellow student Harry Dhillon for their support & feedback.
 
 ---
