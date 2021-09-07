@@ -3,8 +3,6 @@ from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 from colored import fore, back, style
 
-import pdb
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -115,8 +113,7 @@ def print_records_in_loop(record):
     """
     Function to loop through all records passed
     as a parameter and print the details in a
-    list of key: values. Also returns a list of just
-    the value items to be used when editing a contact.
+    list of key: values.
     """
     print("Printing record...")
     for key, value in record.items():
@@ -176,8 +173,7 @@ def convert_to_list_action(option, action):
     """
     Function to convert contact dictionary to list
     so that it can be properly indexed when editing
-    or deleting the contact information; necessary if
-    multiple contacts have been returned from a search.
+    or deleting the contact information.
     """
     values = option.values()
     values_list = list(values)
@@ -201,7 +197,8 @@ def select_from_multiple_records(contacts):
     def print_records_as_options(records, function=None):
         """
         Function to print a single contact with an record number.
-        To be used in the contact search functions.
+        To be used in the contact search functions when multiple
+        records are returned.
         """
         for idx, record in enumerate(records):
             print(f"\nRecord: {idx}\n")
@@ -233,7 +230,7 @@ def search(info_type):
             category = 'General'
         search_by = category
     elif info_type == 'phone_number':
-        phone_number = str(pyip.inputInt('*\nEnter phone number here:\n'))
+        phone_number = str(pyip.inputInt('*Enter phone number here: '))
         search_by = phone_number
     else:
         search_by = pyip.inputStr(f'\nEnter {info_type}: ').capitalize()
@@ -292,10 +289,10 @@ def search_contacts():
     Function will then print all matches if they are found.
     """
     print("\nHow would you like to search?\n\
-1. By first name\n\
-2. By last name\n\
-3. By category\n\
-4. By phone number\n\
+1. By First name\n\
+2. By Last name\n\
+3. By Category\n\
+4. By Phone number\n\
 5. Exit\n")
     while True:
         user_input = user_response(
@@ -403,7 +400,7 @@ def delete(contact, index):
     contact_row = CONTACTS_WORKSHEET.find(contact_id)
     row_number = contact_row.row
     user_input = pyip.inputYesNo(
-        '\nAre you sure you want to delete this contact?\n Y or N\n'
+        '\nAre you sure you want to delete this contact? (Y/N): '
         )
     if user_input == 'yes':
         print(f'{contact} now being deleted...\n')
@@ -467,7 +464,7 @@ def edit_existing_contact(contact):
     else:
         another_task()
     user_input = pyip.inputYesNo(
-        "Would you like to edit another field? (Y/N): ")
+        "\nWould you like to edit another field? (Y/N): ")
     if user_input == 'yes':
         edit_existing_contact(contact)
     else:
