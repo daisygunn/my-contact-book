@@ -135,7 +135,7 @@ def update_worksheet(row, col, value):
     worksheet_to_update.update_cell(row, col, value)
     print(
             fore.WHITE + back.GREEN_4 + style.BLINK +
-            'Change saved' + style.RESET
+            '\nChange saved\n' + style.RESET
             )
 
 
@@ -223,8 +223,8 @@ def search(info_type):
     user input and info type selected.
     """
     if info_type == 'category':
-        user_input = user_response('*Choose category to search by: 1.Friends, \
-2.Favourites, 3.Family or 4.General: ', 1, 4)
+        user_input = user_response('*Choose category to search by: 1. Friends, \
+2. Favourites, 3. Family or 4. General: ', 1, 4)
         if user_input == 1:
             category = 'Friends'
         elif user_input == 2:
