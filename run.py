@@ -3,6 +3,8 @@ from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 from colored import fore, back, style
 
+import pdb
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -117,13 +119,9 @@ def print_records_in_loop(record):
     the value items to be used when editing a contact.
     """
     print("Printing record...")
-    global contact_info
-    contact_info = []
     for key, value in record.items():
         print(f"{key}: {value}")
-        contact_info.append(value)
     print("\n")
-    return contact_info
 
 
 def update_worksheet(row, col, value):
@@ -248,7 +246,7 @@ def search(info_type):
     if len(result) != 0:
         print(
             fore.WHITE + back.GREEN_4 + style.BOLD +
-            "Contact found" + style.RESET
+            "\nContact found\n" + style.RESET
             )
         print_records(result)
         print('1. Edit contact(s)\n2. Delete contact(s)\n\
@@ -265,14 +263,14 @@ def search(info_type):
         if user_input == 1:
             # Edit
             if len(result) == 1:
-                edit_existing_contact(contact_info)
+                convert_to_list_action(result[0], 'edit')
             elif len(result) > 1:
                 contact_choice = select_from_multiple_records(result)
                 convert_to_list_action(contact_choice, 'edit')
         # Delete
         elif user_input == 2:
             if len(result) == 1:
-                delete(contact_info, 6)
+                convert_to_list_action(result[0], 'delete')
             elif len(result) > 1:
                 contact_choice = select_from_multiple_records(result)
                 convert_to_list_action(contact_choice, 'delete')
