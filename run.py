@@ -206,6 +206,7 @@ def select_from_multiple_records(contacts):
         To be used in the contact search functions.
         """
         for idx, record in enumerate(records):
+            idx += 1
             print(f"\nRecord: {idx}\n")
             print_record(record)
 
