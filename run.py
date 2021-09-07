@@ -468,12 +468,8 @@ def edit_existing_contact(contact):
         pass
     else:
         another_task()
-    print('Would you like to edit another field?\n\
-1. Yes\n2. No\n')
-    user_input = user_response(
-        "Please enter a number from the above menu: ", 1, 2
-        )
-    if user_input == 1:
+    user_input = pyip.inputYesNo("Would you like to edit another field? (Y/N): ")
+    if user_input == 'yes':
         edit_existing_contact(contact)
     else:
         another_task()
