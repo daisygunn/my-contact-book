@@ -426,34 +426,35 @@ def edit_existing_contact(contact):
     """
     print(contact)
     print('\nWhich value would you like to change?\n \
-1.First name\n 2.Last name\n 3.Phone number\n 4.Email address\n \
-5.Address\n 6.category\n 7.Exit')
+1. First name\n 2. Last name\n 3. Phone number\n 4. Email address\n \
+5. Address\n 6. Category\n 7. Exit')
     user_input = user_response(
         "\nPlease enter a number from the above options: ", 1, 7
         )
     if user_input == 1:
         edit(contact, 0, 'first name')
-        another_task()
+        print(contact)
+        pass
     elif user_input == 2:
         edit(contact, 1, 'last name')
         print(contact)
-        another_task()
+        pass
     elif user_input == 3:
         edit(contact, 2, 'phone number')
         print(contact)
-        another_task()
+        pass
     elif user_input == 4:
         edit(contact, 3, 'email address')
         print(contact)
-        another_task()
+        pass
     elif user_input == 5:
         edit(contact, 4, 'address')
         print(contact)
-        another_task()
+        pass
     elif user_input == 6:
         cell = CONTACTS_WORKSHEET.find(contact[5])
-        user_input = user_response('*Choose category: 1.Friends, \
-2.Favourites, 3.Family or 4.General: ', 1, 4)
+        user_input = user_response('*Choose category: 1. Friends, \
+2. Favourites, 3. Family or 4. General: ', 1, 4)
         if user_input == 1:
             new_value = 'Friends'
         elif user_input == 2:
@@ -466,7 +467,16 @@ def edit_existing_contact(contact):
         print('\nCategory now being updated...\n')
         update_worksheet(cell.row, cell.col, new_value)
         print(contact)
+        pass
+    else:
         another_task()
+    print('Would you like to edit another field?\n\
+1. Yes\n2. No\n')
+    user_input = user_response(
+        "Please enter a number from the above menu: ", 1, 2
+        )
+    if user_input == 1:
+        edit_existing_contact(contact)
     else:
         another_task()
 
