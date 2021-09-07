@@ -337,11 +337,13 @@ def validate_phone_number():
     (the 0 at the beginning is not counted)
     """
     while True:
-        phone_number = str(pyip.inputInt('*Phone Number: '))
-        if len(phone_number) < 10 or len(phone_number) > 10:
-            print(f"Phone number must be 11 digits long.\
-You entered {len(phone_number)} digits.\n \
-Please note only UK numbers allowed, starting with 0.")
+        try:
+            phone_number = str(pyip.inputInt('*Phone Number: '))
+        except ValueError:
+            if len(phone_number) < 10 or len(phone_number) > 10:
+                print(f"Phone number must be 11 digits long.\
+    You entered {len(phone_number)} digits.\n \
+    Please note only UK numbers allowed, starting with 0.")
         else:
             return phone_number
 
