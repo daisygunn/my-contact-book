@@ -480,10 +480,10 @@ def run_programme():
         fore.WHITE + back.BLUE + style.BOLD +
         '\nWelcome to your contacts book application!\n')
     print('\nInstructions:\n \
-- When presented with a number menu you need to type the relevant \
+- When presented with a numbered menu you need to type the relevant \
 \n number and press enter. This will take you to your desired choice.\n\
-- If presented with a Y or N choice, \n please type Y or \
-N in to the input field and press enter.')
+- If presented with a Y or N choice, please type Y or N in to the \n\
+input field and press enter.')
     print('\nNow taking you to the main menu...\n' + style.RESET)
     main_menu_selection()
 
