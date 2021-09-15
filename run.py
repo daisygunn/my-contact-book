@@ -181,6 +181,7 @@ def convert_to_list_action(option, action):
     """
     values = option.values()
     values_list = list(values)
+    values_list[2] = str(values_list[2]).zfill(11)
     if action == 'edit':
         edit_existing_contact(values_list)
     elif action == 'delete':
@@ -194,9 +195,10 @@ def select_from_multiple_records(contacts):
     Function to choose a single record from a list
     of records that have been returned
     """
-    # def print_record(record):
-    #     for key, value in record.items():
-    #         print(f"{key}: {value}")
+    
+    def print_record(record):
+        for key, value in record.items():
+            print(f"{key}: {value}")
 
     def print_records_as_options(records, function=None):
         """
@@ -206,10 +208,10 @@ def select_from_multiple_records(contacts):
         """
         for idx, record in enumerate(records):
             print(f"\nRecord: {idx}\n")
-            print_records(record)
+            print_record(record)
 
     print('\nList of contacts to choose from: ')
-    print_records_as_options(contacts, print_records)
+    print_records_as_options(contacts, print_record)
     user_input = user_response(
         '\nEnter the record number of the contact you would like to action: ',
         0, len(contacts))
@@ -342,7 +344,8 @@ def validate_phone_number():
 You entered {len(phone_number)} digits.\n\
 Please note only UK numbers allowed, starting with 0.")
         else:
-            return phone_number
+            phone_number_entry = phone_number.zfill(11)
+            return phone_number_entry
 
 
 def add_new_contact():
@@ -383,7 +386,7 @@ def edit(contact, cell_index, info_type):
     adding a new entry.
     """
     # Converts to a string first to allow any integers to be searched for.
-    cell = CONTACTS_WORKSHEET.find(str(contact[cell_index]))
+    cell = CONTACTS_WORKSHEET.find(contact[cell_index])
     if cell_index == 2:
         new_value = validate_phone_number()
     else:
