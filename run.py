@@ -18,7 +18,7 @@ CONTACTS_WORKSHEET = SHEET.worksheet('contact_list')
 
 def user_response(message, min_value, max_value):
     """
-    Function used throughout programme
+    Function used throughout the programme
     to validate users input from a list of choices.
     """
     input = pyip.inputInt(prompt=message, min=min_value, max=max_value)
@@ -27,10 +27,10 @@ def user_response(message, min_value, max_value):
 
 def main_menu_selection():
     """
-    User selects which task they would like to do
-    Take their input and runs elif loop to trigger next process.
-    If invalid choice is input then will continue to ask for a
-    valid input.
+    User selects which task they would like to do, uses their input and runs
+    elif loop to trigger the next process.
+    If an invalid choice is input then the programme
+    will continue to ask for a valid input.
     """
     print(
         "\n 1. Retrieve all contacts\n 2. Search contacts\n\
@@ -216,7 +216,7 @@ def select_from_multiple_records(contacts):
 
 def search(info_type):
     """
-    Function that returns result based upon
+    Function that returns a result based upon
     user input and info type selected.
     """
     if info_type == 'category':
@@ -286,7 +286,7 @@ def search(info_type):
 
 def search_contacts():
     """
-    Allows user to search for specific contact(s),
+    Allows the user to search for specific contact(s),
     either by first name, last name, phone number or category.
     Function will then print all matches if they are found.
     """
@@ -316,7 +316,7 @@ def search_contacts():
 def edit_contact_from_menu():
     """
     Function to edit contact from the
-    main menu. User will need to search for
+    main menu. The user will need to search for
     the contact first.
     """
     print(
@@ -350,7 +350,7 @@ Please note only UK numbers allowed, starting with 0.")
 
 def add_new_contact():
     """
-    Allows user to add new contact information
+    Allows the user to add new contact information
     """
     print('\nTo add a new contact please enter the details below.\n\
 \nAll fields with a * are required.\n\
@@ -399,7 +399,7 @@ def edit(contact, cell_index, info_type):
 def delete(contact, index):
     """
     Retrieves cell index based upon search
-    and allows user to update cell by
+    and allows the user to update cell by
     adding a new entry.
     """
     print(contact)
@@ -420,7 +420,7 @@ complete\n' + style.RESET)
 
 def edit_existing_contact(contact):
     """
-    Allows user to edit existing contact,
+    Allows the user to edit an existing contact,
     choosing which input field they would like
     to edit.
     """

@@ -1,5 +1,4 @@
 # My Contact Book
----
 
 ![](assets/images/responsive.png)
 
@@ -7,6 +6,7 @@
 
 This is a command-line-interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete existing contacts & add new contact information. This project has been designed for educational purposes and uses the Code Institutes mock terminal to run.
 
+---
 ## UX
 To begin planning this project I started first with UX, designing the logic of the programme based upon the user stories. As this is a command-line application there is no design featured as HTML & CSS have not been used; however, I made the decision to use the `Colored` module so that I could add colour to some of the statements printed to the terminal. I chose to do this to provide visual cues for some of the messages, for example, a green background for a *Save Complete* message.
 
@@ -43,7 +43,7 @@ The features included in this programme are listed in the main menu and they can
 
 ### Add new contact:
 - From the main menu there is an option to Add New Contact.
-- Once the user has selected this option they are then asked to input a value for: First Name, Last Name, Phone Number, Email, Address, Category. 
+- Once the user has selected this option they are then asked to input a value for First Name, Last Name, Phone Number, Email, Address, Category. 
 - Both names, phone number and category are required entries, the user can input NA for those not required.
 - Once all fields have been entered the contact is saved.
 - The contact details are printed to the terminal and the user is asked if they want to edit the information.
@@ -106,7 +106,7 @@ This is one of the choices from the main menu, if the user selects option 2, the
 ![](assets/images/contact_search_image.png)
 
 *'As a user, I want to add new contact information.'*  
-This is one of the choices from the main menu, if the user selects option 3, they are taken to add a new contact. The user is asked to input a value for: First Name, Last Name, Phone Number, Email, Address, Category. 
+This is one of the choices from the main menu, if the user selects option 3, they are taken to add a new contact. The user is asked to input a value for First Name, Last Name, Phone Number, Email, Address, Category. 
 
 ![](assets/images/add_contact.png)
 
@@ -207,7 +207,7 @@ I followed the below steps using the Code Institute tutorial:
 
 - The following command in the Gitpod CLI will create the relevant files needed for Heroku to install your project dependencies `pip3 freeze --local > requirements.txt`. Please note this file should be added to a .gitignore file to prevent the file from being committed.
 
-1. Go to [Heroku.com](https://dashboard.heroku.com/apps) and login; if you do not already have an account then you will need to create one.
+1. Go to [Heroku.com](https://dashboard.heroku.com/apps) and log in; if you do not already have an account then you will need to create one.
 2. Click the `New` dropdown and select `Create New App`.
 3. Enter a name for your new project, all Heroku apps need to have a unique name, you will be prompted if you need to change it.
 4. Select the region you are working in.
