@@ -407,7 +407,8 @@ def delete(contact, index):
     if user_input == 'yes':
         print(f'{contact} now being deleted...\n')
         CONTACTS_WORKSHEET.delete_rows(row_number)
-        print('Deletion complete.\n')
+        print(fore.WHITE + back.GREEN_4 + style.BLINK + '\nDeletion\
+complete\n' + style.RESET)
         another_task()
     else:
         another_task()
