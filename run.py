@@ -77,7 +77,7 @@ def another_task():
             print(
                 fore.WHITE + back.DARK_GRAY + style.BOLD +
                 "Programme shutting down...\n" + style.RESET)
-            break
+            raise SystemExit
 
 
 def retrieve_records():
