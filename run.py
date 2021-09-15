@@ -231,9 +231,6 @@ def search(info_type):
         else:
             category = 'General'
         search_by = category
-    elif info_type == 'phone_number':
-        phone_number = str(pyip.inputInt('*Enter phone number here: '))
-        search_by = phone_number
     else:
         search_by = pyip.inputStr(f'\nEnter {info_type}: ').capitalize()
     # Filter function used to search within the worksheet
@@ -287,18 +284,17 @@ def search(info_type):
 def search_contacts():
     """
     Allows the user to search for specific contact(s),
-    either by first name, last name, phone number or category.
+    either by first name, last name or category.
     Function will then print all matches if they are found.
     """
     print("\nHow would you like to search?\n\
 1. By First name\n\
 2. By Last name\n\
 3. By Category\n\
-4. By Phone number\n\
-5. Exit\n")
+4. Exit\n")
     while True:
         user_input = user_response(
-            "\nPlease enter a number from the above options: ", 1, 5
+            "\nPlease enter a number from the above options: ", 1, 4
             )
         if user_input == 1:
             search('first_name')
@@ -306,8 +302,6 @@ def search_contacts():
             search('last_name')
         elif user_input == 3:
             search('category')
-        elif user_input == 4:
-            search('phone_number')
         else:
             another_task()
         return False

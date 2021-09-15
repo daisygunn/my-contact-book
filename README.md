@@ -38,7 +38,6 @@ The features included in this programme are listed in the main menu and they can
     - First name
     - Last name
     - Category
-    - Phone number
 - Once the user has selected the field to search by & input the name/number/category, if there is a match this will be printed to the terminal.
 
 ### Add new contact:
@@ -100,8 +99,8 @@ This is one of the choices from the main menu, if the user selects option 1 all 
 
 ![](assets/images/retrieve_contacts.png)
 
-*'As a user, I want to be able to retrieve a contact's information based upon their name or number.'*  
-This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/number/category. If there is a match found it is printed to the terminal. 
+*'As a user, I want to be able to retrieve a contact's information based upon their name'*  
+This is one of the choices from the main menu, if the user selects option 2, they are taken to search their contacts by either name/category. If there is a match found it is printed to the terminal. 
 
 ![](assets/images/contact_search_image.png)
 
