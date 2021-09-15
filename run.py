@@ -401,13 +401,12 @@ def delete(contact, index):
     contact_id = str(contact[index])
     contact_row = CONTACTS_WORKSHEET.find(contact_id)
     row_number = contact_row.row
-    user_input = pyip.inputYesNo(
-        '\nAre you sure you want to delete this contact? (Y/N): '
-        )
+    user_input = pyip.inputYesNo(fore.WHITE + back.RED + style.BOLD + '\nAre you sure you \
+want to delete this contact? (Y/N): ' + style.RESET)
     if user_input == 'yes':
-        print(f'{contact} now being deleted...\n')
+        print(f'\n{contact} now being deleted...\n')
         CONTACTS_WORKSHEET.delete_rows(row_number)
-        print(fore.WHITE + back.GREEN_4 + style.BLINK + '\nDeletion\
+        print(fore.WHITE + back.GREEN_4 + style.BLINK + '\nDeletion \
 complete\n' + style.RESET)
         another_task()
     else:
