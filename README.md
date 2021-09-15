@@ -5,10 +5,10 @@
 
 [Live application can be found here](https://my-contact-book-dgunn.herokuapp.com/)
 
-This is a command-line interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete existing contacts & add new contact information. This project has been designed for educational purposes and uses the Code Insitutues mock terminal to run.
+This is a command-line-interface application designed for a user to access their contacts book, retrieve specific contact information, edit/delete existing contacts & add new contact information. This project has been designed for educational purposes and uses the Code Institutes mock terminal to run.
 
 ## UX
-To begin planning this project I started first with UX, designing the logic of the programme based upon the user stories. As this is a command-line application there is no design featured as HTML & CSS have not been used; however, I made the decision to use the Colored module so that I could add colour to some of the statements printed to the terminal. I chose to do this to provide visual cues for some of the messages, for example, a green background for a *Save Complete* message.
+To begin planning this project I started first with UX, designing the logic of the programme based upon the user stories. As this is a command-line application there is no design featured as HTML & CSS have not been used; however, I made the decision to use the `Colored` module so that I could add colour to some of the statements printed to the terminal. I chose to do this to provide visual cues for some of the messages, for example, a green background for a *Save Complete* message.
 
 ### Strategy
 User Stories:
@@ -147,6 +147,13 @@ For this reason, I added an additional function to validate these entries (calle
 
 ![](assets/images/phone_number_validated.png)
 
+
+### Bugs and Fixes
+
+I received feedback from one of my peers that numbers were being returned from the spreadsheet without a 0 in front of them; I fixed this issue by using the `zfill` method, ensuring that any number less than 11 digits would have a 0 added thus creating a more seamless user experience. I used the same method to ensure that when a new contact is created or edited the numbers are added the same way. 
+
+![](assets/images/numbers_with_0.png)
+
 In addition to my own testing of the programme I passed my code through the [Pep8](http://pep8online.com/checkresult) online validator which passed through with 0 issues:
 
 ![](assets/images/pep8_validation.png)
@@ -229,6 +236,6 @@ All of this code has been written by me, however, I have used [Stack Overflow](h
 ---
 ## Acknowledgements
 
-I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my fellow student Harry Dhillon for their support & feedback.
+I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my peers Harry Dhillon, Deanna Carina and Jack Crosbie for their support & feedback.
 
 ---
