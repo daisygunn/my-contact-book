@@ -329,12 +329,12 @@ you will first need to search for them.\n'
 def validate_phone_number():
     """
     Function to validate phone number entries,
-    ensuring they are 10 digits only
-    (the 0 at the beginning is not counted)
+    ensuring they are 10 digits only, as the 0
+    at the beginning is not counted.
     """
     while True:
         phone_number = str(pyip.inputInt('*Phone Number: '))
-        if len(phone_number) < 10 or len(phone_number) > 10:
+        if len(phone_number) <= 9 or len(phone_number) >= 11:
             print(f"Phone number must be 11 digits long.\
 You entered {len(phone_number)} digits.\n\
 Please note only UK numbers allowed, starting with 0.")
