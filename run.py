@@ -117,7 +117,11 @@ def print_records_in_loop(record):
     """
     print("Printing record...")
     for key, value in record.items():
-        print(f"{key}: {value}")
+        if key == 'phone_number':
+            value1 = str(value).zfill(11)
+            print(f"{key}: {value1}")
+        else:
+            print(f"{key}: {value}")
     print("\n")
 
 
@@ -190,9 +194,9 @@ def select_from_multiple_records(contacts):
     Function to choose a single record from a list
     of records that have been returned
     """
-    def print_record(record):
-        for key, value in record.items():
-            print(f"{key}: {value}")
+    # def print_record(record):
+    #     for key, value in record.items():
+    #         print(f"{key}: {value}")
 
     def print_records_as_options(records, function=None):
         """
@@ -202,10 +206,10 @@ def select_from_multiple_records(contacts):
         """
         for idx, record in enumerate(records):
             print(f"\nRecord: {idx}\n")
-            print_record(record)
+            print_records(record)
 
     print('\nList of contacts to choose from: ')
-    print_records_as_options(contacts, print_record)
+    print_records_as_options(contacts, print_records)
     user_input = user_response(
         '\nEnter the record number of the contact you would like to action: ',
         0, len(contacts))
