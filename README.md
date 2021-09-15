@@ -71,7 +71,9 @@ I have used several technologies that have enabled this design to work:
         - [pyinputplus](https://pyinputplus.readthedocs.io/en/latest/)
             - Used to validate all of the user inputs.
         - [Colored](https://pypi.org/project/colored/)
-        - Used to add colours to the printed terminal messages
+            - Used to add colours to the printed terminal messages
+        - [PDB](https://www.geeksforgeeks.org/debugging-python-code-using-breakpoint-and-pdb/)
+            - Used to debug my code when facing issues.
 - [GitHub](https://github.com/)
     - Used to store code for the project after being pushed.
 - [Git](https://git-scm.com/)
@@ -86,10 +88,13 @@ I have used several technologies that have enabled this design to work:
     - Used to fix the thousands of grammar errors across the project.
 - [Google Sheets](https://www.google.co.uk/sheets/about/)
     - Used to store the 'Contacts' data used for the application.
+- [Pep8](http://pep8online.com/)
+    - Used to test my code for any issues or errors.
 ---
 ## Testing
 
 ### User Stories
+
 *'As a user, I want to be able to easily access all of my contacts at once.'*  
 This is one of the choices from the main menu, if the user selects option 1 all of their contacts are printed to the terminal.
 
@@ -150,7 +155,7 @@ For this reason, I added an additional function to validate these entries (calle
 
 ### Bugs and Fixes
 
-I received feedback from one of my peers that numbers were being returned from the spreadsheet without a 0 in front of them; I fixed this issue by using the `zfill` method, ensuring that any number less than 11 digits would have a 0 added thus creating a more seamless user experience. I used the same method to ensure that when a new contact is created or edited the numbers are added the same way. 
+I received feedback from one of my peers that phone numbers were being returned from the googlesheet without a 0 in front of them; I fixed this issue by using the `zfill` method, ensuring that any number less than 11 digits would have a 0 added; furthermore, I used the same method to ensure that when a new contact is created or edited the numbers are added the same way, thus creating a more seamless user experience.
 
 ![](assets/images/numbers_with_0.png)
 
@@ -229,7 +234,11 @@ In the Deploy tab:
 ---
 ## Credits
 
-All of this code has been written by me, however, I have used [Stack Overflow](https://stackoverflow.com/) and the relevant module documentation for `pyinputplus` and `Gspread` to help me debug my code and fix any issues that I had.
+All of this code has been written by me, however, I have used [Stack Overflow](https://stackoverflow.com/) and the relevant module documentation for `pyinputplus`, `Colored` and `Gspread` to help me debug my code and fix any issues that I had.
+
+I also used [`PDB`](https://www.geeksforgeeks.org/debugging-python-code-using-breakpoint-and-pdb/) throughout to help me debug my code.
+
+[Zfill method help](https://www.w3schools.com/python/ref_string_zfill.asp)
 
 [Address/Contact generator](https://www.fakeaddressgenerator.com/World/uk_address_generator) - used to generate some of the contacts in my worksheet.
 

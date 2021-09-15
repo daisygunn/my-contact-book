@@ -118,6 +118,7 @@ def print_records_in_loop(record):
     print("Printing record...")
     for key, value in record.items():
         if key == 'phone_number':
+            # Ensures 0 is added to the front of the number
             value1 = str(value).zfill(11)
             print(f"{key}: {value1}")
         else:
@@ -339,6 +340,10 @@ def validate_phone_number():
 You entered {len(phone_number)} digits.\n\
 Please note only UK numbers allowed, starting with 0.")
         else:
+            """
+            Ensures phone number added has a 0 at the front as
+            this is disregarded by the terminal
+            """
             phone_number_entry = phone_number.zfill(11)
             return phone_number_entry
 
